@@ -1,8 +1,9 @@
 {
   "name": "create-index",
-  "description": "",
+  "description": "Creates ES6 ./index.js file in target directories that imports and exports all sibling files and directories.",
   "version": "0.0.0",
   "main": "./dist/index.js",
+  "bin": "./dist/bin/create-index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/gajus/create-index"
@@ -29,6 +30,11 @@
     "watch-build": "npm run pragmatist watch-build"
   },
   "devDependencies": {
-    "pragmatist": "^2.3.67"
+    "chai": "^3.4.1",
+    "pragmatist": "^2.3.70"
+  },
+  "dependencies": {
+    "lodash": "^3.10.1",
+    "yargs": "^3.31.0"
   }
 }
