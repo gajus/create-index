@@ -52,7 +52,9 @@ When run again, `create-index` will update existing `./index.js` if it starts wi
 
 If `create-index` is executed against a directory that contains `./index.js`, which does not start with `'create index';\n\n`, an error will be thrown.
 
-## Using CLI Program
+## Usage
+
+### Using CLI Program
 
 ```sh
 npm install create-index
@@ -60,7 +62,7 @@ npm install create-index
 create-index ./directory1 ./directory2 ./directory3 ...
 ```
 
-## Using `create-index` Programmatically
+### Using `create-index` Programmatically
 
 ```js
 import {
@@ -77,3 +79,21 @@ import {
  */
 writeIndex;
 ```
+
+Note that the `writeIndex` function is synchronous.
+
+### Gulp
+
+Since gulp can ran arbitrary JavaScript code, there is no need for a separate plugin. See [Using `create-index` Programmatically](#using-create-index-programmatically).
+
+```js
+import {
+    writeIndex
+} from 'create-index';
+
+gulp.task('create-index', () => {
+    writeIndex(['./target_directory']);
+});
+```
+
+Note that the `writeIndex` function is synchronous.
