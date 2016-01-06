@@ -84,7 +84,7 @@ Note that the `writeIndex` function is synchronous.
 
 ### Gulp
 
-Since gulp can ran arbitrary JavaScript code, there is no need for a separate plugin. See [Using `create-index` Programmatically](#using-create-index-programmatically).
+Since [Gulp](http://gulpjs.com/) can ran arbitrary JavaScript code, there is no need for a separate plugin. See [Using `create-index` Programmatically](#using-create-index-programmatically).
 
 ```js
 import {
