@@ -6,6 +6,72 @@
 
 `create-index` program creates (and maintains) ES6 `./index.js` file in target directories that imports and exports sibling files and directories.
 
+## Example
+
+```sh
+> tree ./
+./
+├── bar.js
+└── foo.js
+
+0 directories, 2 files
+
+> create-index ./
+[13:17:34] Target directories [ './' ]
+[13:17:34] Update index: false
+[13:17:34] ./index.js [created index]
+[13:17:34] Done
+
+> tree
+.
+├── bar.js
+├── foo.js
+└── index.js
+
+0 directories, 3 files
+```
+
+This created `index.js` with:
+
+```js
+'create index';
+
+export bar from './bar.js';
+export foo from './foo.js';
+
+```
+
+Lets create a new file and re-run `create-index`:
+
+```js
+> touch baz.js
+> tree ./
+./
+├── bar.js
+├── baz.js
+├── foo.js
+└── index.js
+
+0 directories, 4 files
+
+> create-index ./
+[13:21:55] Target directories [ './' ]
+[13:21:55] Update index: false
+[13:21:55] ./index.js [updated index]
+[13:21:55] Done
+```
+
+This have updated `index.js` file:
+
+```js
+'create index';
+
+export bar from './bar.js';
+export baz from './baz.js';
+export foo from './foo.js';
+
+```
+
 ## Usage
 
 ### Using CLI Program
