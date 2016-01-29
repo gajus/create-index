@@ -6,6 +6,81 @@
 
 `create-index` program creates (and maintains) ES6 `./index.js` file in target directories that imports and exports sibling files and directories.
 
+## Usage
+
+### Using CLI Program
+
+```sh
+npm install create-index
+
+create-index --help
+
+Options:
+  --update-index  Recursively iterates target directories looking for "index.js"
+                  files that start with "'create index';\n" (create-index index
+                  file). Updates found index files. Does not create new index
+                  files.                              [boolean] [default: false]
+
+Examples:
+  create-index ./src ./src/utilities        Creates or updates an existing
+                                            create-index index file in the
+                                            target (./src, ./src/utilities)
+                                            directories.
+  create-index --update-index ./src         Finds all create-index index files
+  ./tests                                   in the target directories and
+                                            descending directories. Updates
+                                            found index files.
+```
+
+### Using `create-index` Programmatically
+
+```js
+import {
+    writeIndex
+} from 'create-index';
+
+/**
+ * @type {Function}
+ * @param {Array<string>} directoryPaths
+ * @throws {Error} Directory "..." does not exist.
+ * @throws {Error} "..." is not a directory.
+ * @throws {Error} "..." unsafe index.
+ * @returns {boolean}
+ */
+writeIndex;
+```
+
+Note that the `writeIndex` function is synchronous.
+
+```js
+import {
+    findIndexFiles
+} from 'create-index';
+
+/**
+ * @type {Function}
+ * @param {string} directoryPath
+ * @returns {Array<string>} List of directory paths that have create-index index file.
+ */
+findIndexFiles;
+```
+
+### Gulp
+
+Since [Gulp](http://gulpjs.com/) can ran arbitrary JavaScript code, there is no need for a separate plugin. See [Using `create-index` Programmatically](#using-create-index-programmatically).
+
+```js
+import {
+    writeIndex
+} from 'create-index';
+
+gulp.task('create-index', () => {
+    writeIndex(['./target_directory']);
+});
+```
+
+Note that the `writeIndex` function is synchronous.
+
 ## Implementation
 
 `create-index` program will look into the target directory.
@@ -51,49 +126,3 @@ Directories that do not have `./index.js` in themselves will be excluded.
 When run again, `create-index` will update existing `./index.js` if it starts with `'create index';\n\n`.
 
 If `create-index` is executed against a directory that contains `./index.js`, which does not start with `'create index';\n\n`, an error will be thrown.
-
-## Usage
-
-### Using CLI Program
-
-```sh
-npm install create-index
-
-create-index ./directory1 ./directory2 ./directory3 ...
-```
-
-### Using `create-index` Programmatically
-
-```js
-import {
-    writeIndex
-} from 'create-index';
-
-/**
- * @type {Function}
- * @param {Array<string>} directoryPaths
- * @throws {Error} Directory "..." does not exist.
- * @throws {Error} "..." is not a directory.
- * @throws {Error} "..." unsafe index.
- * @returns {boolean}
- */
-writeIndex;
-```
-
-Note that the `writeIndex` function is synchronous.
-
-### Gulp
-
-Since [Gulp](http://gulpjs.com/) can ran arbitrary JavaScript code, there is no need for a separate plugin. See [Using `create-index` Programmatically](#using-create-index-programmatically).
-
-```js
-import {
-    writeIndex
-} from 'create-index';
-
-gulp.task('create-index', () => {
-    writeIndex(['./target_directory']);
-});
-```
-
-Note that the `writeIndex` function is synchronous.

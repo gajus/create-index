@@ -6,14 +6,25 @@ import validateTargetDirectory from './validateTargetDirectory';
 import readDirectory from './readDirectory';
 import sortByDepth from './sortByDepth';
 import log from './log';
+import findIndexFiles from './findIndexFiles';
 import chalk from 'chalk';
 
-export default (directoryPaths) => {
+export default (directoryPaths, options = {}) => {
     let sortedDirectoryPaths;
 
     sortedDirectoryPaths = sortByDepth(directoryPaths);
 
     log('Target directories', sortedDirectoryPaths);
+    log('Update index:', options.updateIndex ? chalk.green('true') : chalk.red('false'));
+
+    if (options.updateIndex) {
+        sortedDirectoryPaths = _.map(sortedDirectoryPaths, findIndexFiles);
+        sortedDirectoryPaths = _.flatten(sortedDirectoryPaths);
+        sortedDirectoryPaths = _.uniq(sortedDirectoryPaths);
+        sortedDirectoryPaths = sortByDepth(sortedDirectoryPaths);
+
+        log('Found index file in:', sortedDirectoryPaths);
+    }
 
     _.forEach(sortedDirectoryPaths, (directoryPath) => {
         validateTargetDirectory(directoryPath);

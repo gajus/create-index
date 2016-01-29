@@ -1,6 +1,7 @@
 'create index';
 
 export createIndexCode from './createIndexCode.js';
+export findIndexFiles from './findIndexFiles.js';
 export log from './log.js';
 export readDirectory from './readDirectory.js';
 export sortByDepth from './sortByDepth.js';

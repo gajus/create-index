@@ -8,7 +8,7 @@ import path from 'path';
 import codeExample from './codeExample';
 import writeIndex from './../src/utilities/writeIndex';
 
-const fixturesPath = path.resolve(__dirname, './fixtures/write-index');
+const fixturesPath = path.resolve(__dirname, './../../fixtures/write-index');
 
 describe('writeIndex()', () => {
     it('creates index in target directory', () => {

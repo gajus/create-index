@@ -1,6 +1,4 @@
 export {
-    createIndexCode,
-    readDirectory,
-    validateTargetDirectory,
+    findIndexFiles,
     writeIndex
 } from './utilities';

@@ -5,7 +5,7 @@ import {
 import path from 'path';
 import readDirectory from './../src/utilities/readDirectory';
 
-const fixturesPath = path.resolve(__dirname, './fixtures/read-directory');
+const fixturesPath = path.resolve(__dirname, './../../fixtures/read-directory');
 
 describe('readDirectory()', () => {
     context('target directory contains child directories', () => {
@@ -35,7 +35,7 @@ describe('readDirectory()', () => {
             expect(names).to.deep.equal(['present']);
         });
     });
-    context.skip('target directory contains ./index.js', () => {
+    context('target directory contains ./index.js', () => {
         it('does not include ./index.js', () => {
             let names;
 
