@@ -40,7 +40,7 @@ hasMultipleExtensions = (fileName) => {
 };
 
 isSafeName = (fileName) => {
-    return /^[a-z][a-z0-9\.]+$/i.test(fileName);
+    return /^[a-z][a-z0-9\._]+$/i.test(fileName);
 };
 
 removeDuplicates = (files) => {
