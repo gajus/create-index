@@ -2,7 +2,7 @@
 
 import yargs from 'yargs';
 import {
-    writeIndex
+    writeIndexCli
 } from './../utilities';
 
 let argv;
@@ -11,8 +11,4 @@ argv = yargs
     .demand(1)
     .argv;
 
-writeIndex(argv._);
-
-/* eslint-disable no-console */
-console.log('OK!');
-/* eslint-enable no-console */
+writeIndexCli(argv._);

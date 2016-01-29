@@ -19,9 +19,11 @@ describe('writeIndex()', () => {
 
         try {
             fs.unlinkSync(indexFilePath);
+        /* eslint-disable no-empty */
         } catch (error) {
 
         }
+        /* eslint-enable no-empty */
 
         writeIndex([path.resolve(fixturesPath, './mixed')]);
 

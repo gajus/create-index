@@ -32,6 +32,8 @@
   },
   "devDependencies": {
     "chai": "^3.5.0",
+    "chalk": "^1.1.1",
+    "moment": "^2.11.1",
     "pragmatist": "^3.0.3"
   },
   "dependencies": {
