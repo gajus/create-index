@@ -1,7 +1,7 @@
 {
   "name": "create-index",
   "description": "Creates ES6 ./index.js file in target directories that imports and exports all sibling files and directories.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "main": "./dist/index.js",
   "bin": "./dist/bin/create-index.js",
   "repository": {
