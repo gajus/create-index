@@ -1,7 +1,9 @@
 #!/usr/bin/env node
 
 import yargs from 'yargs';
-import writeIndex from './../writeIndex';
+import {
+    writeIndex
+} from './../utilities';
 
 let argv;
 

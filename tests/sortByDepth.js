@@ -1,7 +1,7 @@
 import {
     expect
 } from 'chai';
-import sortByDepth from './../src/sortByDepth';
+import sortByDepth from './../src/utilities/sortByDepth';
 
 describe('sortByDepth()', () => {
     it('sorts from deepest to the most shallow', () => {

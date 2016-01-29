@@ -4,7 +4,7 @@ import {
     expect
 } from 'chai';
 
-import createIndexCode from './../src/createIndexCode';
+import createIndexCode from './../src/utilities/createIndexCode';
 
 import codeExample from './codeExample';
 
@@ -26,11 +26,7 @@ describe('createIndexCode()', () => {
         expect(indexCode).to.equal(codeExample(`
 'create index';
 
-import foo from './foo';
-
-export {
-    foo
-};
+export foo from './foo';
         `));
     });
     it('describes multiple children', () => {
@@ -41,13 +37,8 @@ export {
         expect(indexCode).to.equal(codeExample(`
 'create index';
 
-import bar from './bar';
-import foo from './foo';
-
-export {
-    bar,
-    foo
-};
+export bar from './bar';
+export foo from './foo';
         `));
     });
     context('file with extension', () => {
@@ -59,11 +50,7 @@ export {
             expect(indexCode).to.equal(codeExample(`
 'create index';
 
-import foo from './foo.js';
-
-export {
-    foo
-};
+export foo from './foo.js';
             `));
         });
     });
@@ -76,13 +63,8 @@ export {
             expect(indexCode).to.equal(codeExample(`
 'create index';
 
-import bar from './bar';
-import foo from './foo';
-
-export {
-    bar,
-    foo
-};
+export bar from './bar';
+export foo from './foo';
             `));
         });
     });

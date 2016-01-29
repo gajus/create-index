@@ -1,7 +1,6 @@
 import _ from 'lodash';
 
 let buildExportBlock,
-    buildImportBlock,
     safeVariableName;
 
 safeVariableName = (fileName) => {
@@ -16,28 +15,16 @@ safeVariableName = (fileName) => {
     }
 };
 
-buildImportBlock = (files) => {
+buildExportBlock = (files) => {
     let importBlock;
 
     importBlock = _.map(files, (fileName) => {
-        return 'import ' + safeVariableName(fileName) + ' from \'./' + fileName + '\';';
+        return 'export ' + safeVariableName(fileName) + ' from \'./' + fileName + '\';';
     });
 
     importBlock = importBlock.join('\n');
 
     return importBlock;
-};
-
-buildExportBlock = (files) => {
-    let exportBlock;
-
-    exportBlock = _.map(files, (fileName) => {
-        return '    ' + safeVariableName(fileName);
-    });
-
-    exportBlock = 'export {\n' + exportBlock.join(',\n') + '\n};';
-
-    return exportBlock;
 };
 
 export default (filePaths) => {
@@ -49,7 +36,7 @@ export default (filePaths) => {
     if (filePaths.length) {
         sortedFilePaths = filePaths.sort();
 
-        code += buildImportBlock(sortedFilePaths) + '\n\n' + buildExportBlock(sortedFilePaths) + '\n\n';
+        code += buildExportBlock(sortedFilePaths) + '\n\n';
     }
 
     return code;

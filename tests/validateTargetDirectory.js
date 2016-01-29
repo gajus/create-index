@@ -4,7 +4,7 @@ import {
     expect
 } from 'chai';
 import path from 'path';
-import validateTargetDirectory from './../src/validateTargetDirectory';
+import validateTargetDirectory from './../src/utilities/validateTargetDirectory';
 
 const fixturesPath = path.resolve(__dirname, './fixtures/validate-target-directory');
 

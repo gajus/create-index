@@ -6,7 +6,7 @@ import {
 import fs from 'fs';
 import path from 'path';
 import codeExample from './codeExample';
-import writeIndex from './../src/writeIndex';
+import writeIndex from './../src/utilities/writeIndex';
 
 const fixturesPath = path.resolve(__dirname, './fixtures/write-index');
 
@@ -30,13 +30,8 @@ describe('writeIndex()', () => {
         expect(indexCode).to.equal(codeExample(`
 'create index';
 
-import bar from './bar';
-import foo from './foo.js';
-
-export {
-    bar,
-    foo
-};
+export bar from './bar';
+export foo from './foo.js';
         `));
     });
 });

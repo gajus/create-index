@@ -20,21 +20,22 @@
   },
   "license": "BSD-3-Clause",
   "scripts": {
-    "pragmatist": "node ./node_modules/.bin/pragmatist --browser",
+    "pragmatist": "node ./node_modules/.bin/pragmatist --es5",
     "lint": "npm run pragmatist lint",
     "test": "npm run pragmatist test",
     "build": "npm run pragmatist build",
     "watch": "npm run pragmatist watch",
     "watch-lint": "npm run pragmatist watch-lint",
     "watch-test": "npm run pragmatist watch-test",
-    "watch-build": "npm run pragmatist watch-build"
+    "watch-build": "npm run pragmatist watch-build",
+    "create-index": "node ./dist/bin/create-index ./src/utilities"
   },
   "devDependencies": {
-    "chai": "^3.4.1",
-    "pragmatist": "^2.3.70"
+    "chai": "^3.5.0",
+    "pragmatist": "^3.0.3"
   },
   "dependencies": {
-    "lodash": "^3.10.1",
-    "yargs": "^3.31.0"
+    "lodash": "^4.0.1",
+    "yargs": "^4.0.0-alpha1"
   }
 }

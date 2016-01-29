@@ -3,7 +3,7 @@ import {
 } from 'chai';
 
 import path from 'path';
-import readDirectory from './../src/readDirectory';
+import readDirectory from './../src/utilities/readDirectory';
 
 const fixturesPath = path.resolve(__dirname, './fixtures/read-directory');
 
