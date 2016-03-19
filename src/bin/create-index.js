@@ -5,9 +5,7 @@ import {
     writeIndexCli
 } from './../utilities';
 
-let argv;
-
-argv = yargs
+const argv = yargs
     .demand(1)
     .options({
         'update-index': {

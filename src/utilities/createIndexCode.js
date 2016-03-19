@@ -1,12 +1,7 @@
 import _ from 'lodash';
 
-let buildExportBlock,
-    safeVariableName;
-
-safeVariableName = (fileName) => {
-    let indexOfDot;
-
-    indexOfDot = fileName.indexOf('.');
+const safeVariableName = (fileName) => {
+    const indexOfDot = fileName.indexOf('.');
 
     if (indexOfDot === -1) {
         return fileName;
@@ -15,7 +10,7 @@ safeVariableName = (fileName) => {
     }
 };
 
-buildExportBlock = (files) => {
+const buildExportBlock = (files) => {
     let importBlock;
 
     importBlock = _.map(files, (fileName) => {
@@ -28,13 +23,12 @@ buildExportBlock = (files) => {
 };
 
 export default (filePaths) => {
-    let code,
-        sortedFilePaths;
+    let code;
 
     code = '\'create index\';\n\n';
 
     if (filePaths.length) {
-        sortedFilePaths = filePaths.sort();
+        const sortedFilePaths = filePaths.sort();
 
         code += buildExportBlock(sortedFilePaths) + '\n\n';
     }

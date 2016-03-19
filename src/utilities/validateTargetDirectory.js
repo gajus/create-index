@@ -3,9 +3,7 @@ import fs from 'fs';
 import path from 'path';
 
 export default (targetDirectory) => {
-    let indexFile,
-        indexFilePath,
-        stats;
+    let stats;
 
     try {
         stats = fs.statSync(targetDirectory);
@@ -17,7 +15,7 @@ export default (targetDirectory) => {
         throw new Error('"' + targetDirectory + '" is not a directory.');
     }
 
-    indexFilePath = path.resolve(targetDirectory, './index.js');
+    const indexFilePath = path.resolve(targetDirectory, './index.js');
 
     try {
         fs.statSync(indexFilePath);
@@ -25,7 +23,7 @@ export default (targetDirectory) => {
         return true;
     }
 
-    indexFile = fs.readFileSync(indexFilePath, 'utf8');
+    const indexFile = fs.readFileSync(indexFilePath, 'utf8');
 
     if (!_.startsWith(indexFile, '\'create index\';\n')) {
         throw new Error('"' + indexFilePath + '" unsafe index.');

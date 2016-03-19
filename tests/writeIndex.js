@@ -12,10 +12,7 @@ const fixturesPath = path.resolve(__dirname, './../../fixtures/write-index');
 
 describe('writeIndex()', () => {
     it('creates index in target directory', () => {
-        let indexCode,
-            indexFilePath;
-
-        indexFilePath = path.resolve(fixturesPath, './mixed/index.js');
+        const indexFilePath = path.resolve(fixturesPath, './mixed/index.js');
 
         try {
             fs.unlinkSync(indexFilePath);
@@ -27,7 +24,7 @@ describe('writeIndex()', () => {
 
         writeIndex([path.resolve(fixturesPath, './mixed')]);
 
-        indexCode = fs.readFileSync(indexFilePath, 'utf8');
+        const indexCode = fs.readFileSync(indexFilePath, 'utf8');
 
         expect(indexCode).to.equal(codeExample(`
 'create index';

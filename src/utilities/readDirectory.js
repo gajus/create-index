@@ -3,16 +3,8 @@ import _ from 'lodash';
 import path from 'path';
 import validateTargetDirectory from './validateTargetDirectory';
 
-let hasIndex,
-    hasMultipleExtensions,
-    hasNoExtension,
-    isSafeName,
-    removeDuplicates;
-
-hasIndex = (directoryPath) => {
-    let indexPath;
-
-    indexPath = path.resolve(directoryPath, 'index.js');
+const hasIndex = (directoryPath) => {
+    const indexPath = path.resolve(directoryPath, 'index.js');
 
     try {
         fs.statSync(indexPath);
@@ -23,27 +15,23 @@ hasIndex = (directoryPath) => {
     }
 };
 
-hasNoExtension = (fileName) => {
-    let matches;
-
-    matches = fileName.match(/\./g);
+const hasNoExtension = (fileName) => {
+    const matches = fileName.match(/\./g);
 
     return !matches;
 };
 
-hasMultipleExtensions = (fileName) => {
-    let matches;
-
-    matches = fileName.match(/\./g);
+const hasMultipleExtensions = (fileName) => {
+    const matches = fileName.match(/\./g);
 
     return matches && matches.length > 1;
 };
 
-isSafeName = (fileName) => {
+const isSafeName = (fileName) => {
     return /^[a-z][a-z0-9\._]+$/i.test(fileName);
 };
 
-removeDuplicates = (files) => {
+const removeDuplicates = (files) => {
     return _.filter(files, (fileName) => {
         return !_.includes(files, fileName + '.js');
     });
@@ -57,12 +45,8 @@ export default (directoryPath) => {
     children = fs.readdirSync(directoryPath);
 
     children = _.filter(children, (fileName) => {
-        let absolutePath,
-            isDirectory;
-
-        absolutePath = path.resolve(directoryPath, fileName);
-
-        isDirectory = fs.statSync(absolutePath).isDirectory();
+        const absolutePath = path.resolve(directoryPath, fileName);
+        const isDirectory = fs.statSync(absolutePath).isDirectory();
 
         if (!isSafeName(fileName)) {
             return false;

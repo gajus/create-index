@@ -31,16 +31,13 @@ export default (directoryPaths, options = {}) => {
     });
 
     _.forEach(sortedDirectoryPaths, (directoryPath) => {
-        let existingIndexCode,
-            indexCode,
-            indexFilePath,
-            siblings;
+        let existingIndexCode;
 
-        siblings = readDirectory(directoryPath);
+        const siblings = readDirectory(directoryPath);
 
-        indexCode = createIndexCode(siblings);
+        const indexCode = createIndexCode(siblings);
 
-        indexFilePath = path.resolve(directoryPath, 'index.js');
+        const indexFilePath = path.resolve(directoryPath, 'index.js');
 
         try {
             existingIndexCode = fs.readFileSync(indexFilePath, 'utf8');

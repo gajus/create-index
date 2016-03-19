@@ -7,24 +7,16 @@ import readDirectory from './readDirectory';
 import sortByDepth from './sortByDepth';
 
 export default (directoryPaths) => {
-    let sortedDirectoryPaths;
-
-    sortedDirectoryPaths = sortByDepth(directoryPaths);
+    const sortedDirectoryPaths = sortByDepth(directoryPaths);
 
     _.forEach(sortedDirectoryPaths, (directoryPath) => {
         validateTargetDirectory(directoryPath);
     });
 
     _.forEach(sortedDirectoryPaths, (directoryPath) => {
-        let indexCode,
-            indexFilePath,
-            siblings;
-
-        siblings = readDirectory(directoryPath);
-
-        indexCode = createIndexCode(siblings);
-
-        indexFilePath = path.resolve(directoryPath, 'index.js');
+        const siblings = readDirectory(directoryPath);
+        const indexCode = createIndexCode(siblings);
+        const indexFilePath = path.resolve(directoryPath, 'index.js');
 
         fs.writeFileSync(indexFilePath, indexCode);
     });
