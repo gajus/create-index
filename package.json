@@ -20,14 +20,9 @@
   },
   "license": "BSD-3-Clause",
   "scripts": {
-    "pragmatist": "node ./node_modules/.bin/pragmatist --es5",
-    "lint": "npm run pragmatist lint",
-    "test": "npm run pragmatist test",
-    "build": "npm run pragmatist build",
-    "watch": "npm run pragmatist watch",
-    "watch-lint": "npm run pragmatist watch-lint",
-    "watch-test": "npm run pragmatist watch-test",
-    "watch-build": "npm run pragmatist watch-build",
+    "lint": "pragmatist lint",
+    "test": "pragmatist test --type-assertions",
+    "build": "pragmatist build --es5",
     "create-index": "node ./dist/bin/create-index ./src/utilities"
   },
   "devDependencies": {
