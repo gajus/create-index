@@ -32,13 +32,13 @@
   },
   "devDependencies": {
     "chai": "^3.5.0",
-    "pragmatist": "^3.0.3"
+    "pragmatist": "^3.0.21"
   },
   "dependencies": {
-    "glob": "^6.0.4",
-    "lodash": "^4.0.1",
-    "yargs": "^4.0.0-alpha1",
+    "glob": "^7.0.3",
+    "lodash": "^4.6.1",
+    "yargs": "^4.3.1",
     "chalk": "^1.1.1",
-    "moment": "^2.11.1"
+    "moment": "^2.12.0"
   }
 }
