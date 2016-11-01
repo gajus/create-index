@@ -5,6 +5,7 @@ dist
 .*
 !.babelrc
 !.editorconfig
+!.eslintignore
 !.eslintrc
 !.gitignore
 !.npmignore
