@@ -82,20 +82,18 @@ npm install create-index
 create-index --help
 
 Options:
-  --update-index  Recursively iterates target directories looking for "index.js"
-                  files that start with "'create index';\n" (create-index index
-                  file). Updates found index files. Does not create new index
-                  files.                              [boolean] [default: false]
+  --update, -u  Recursively iterates target directories looking for "index.js"
+                files that start with "'create index';\n" (create-index index
+                file). Updates found index files. Does not create new index
+                files.                                [boolean] [default: false]
 
 Examples:
-  create-index ./src ./src/utilities        Creates or updates an existing
-                                            create-index index file in the
-                                            target (./src, ./src/utilities)
-                                            directories.
-  create-index --update-index ./src         Finds all create-index index files
-  ./tests                                   in the target directories and
-                                            descending directories. Updates
-                                            found index files.
+  create-index ./src ./src/utilities   Creates or updates an existing
+                                       create-index index file in the target
+                                       (./src, ./src/utilities) directories.
+  create-index --update ./src ./tests  Finds all create-index index files in the
+                                       target directories and descending
+                                       directories. Updates found index files.
 ```
 
 ### Using `create-index` Programmatically
