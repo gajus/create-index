@@ -25,7 +25,7 @@
   "scripts": {
     "lint": "eslint ./src ./tests",
     "test": "mocha --compilers js:babel-register",
-    "build": "babel build --es5",
+    "build": "babel --source-maps --copy-files ./src --out-dir ./dist",
     "create-index": "node ./dist/bin/create-index ./src/utilities"
   },
   "devDependencies": {
