@@ -13,6 +13,9 @@
     "import",
     "export"
   ],
+  "engines": {
+    "node": ">=5"
+  },
   "author": {
     "name": "Gajus Kuizinas",
     "email": "gajus@gajus.com",
