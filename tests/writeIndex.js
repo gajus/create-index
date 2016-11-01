@@ -1,36 +1,36 @@
 /* eslint-disable no-restricted-syntax */
 
+import fs from 'fs';
+import path from 'path';
 import {
     expect
 } from 'chai';
-import fs from 'fs';
-import path from 'path';
+import writeIndex from '../src/utilities/writeIndex';
 import codeExample from './codeExample';
-import writeIndex from './../src/utilities/writeIndex';
 
-const fixturesPath = path.resolve(__dirname, './../../fixtures/write-index');
+const fixturesPath = path.resolve(__dirname, '../fixtures/write-index');
 
 describe('writeIndex()', () => {
-    it('creates index in target directory', () => {
-        const indexFilePath = path.resolve(fixturesPath, './mixed/index.js');
+  it('creates index in target directory', () => {
+    const indexFilePath = path.resolve(fixturesPath, './mixed/index.js');
 
-        try {
-            fs.unlinkSync(indexFilePath);
-        /* eslint-disable no-empty */
-        } catch (error) {
+    try {
+      fs.unlinkSync(indexFilePath);
 
-        }
-        /* eslint-enable no-empty */
+      // eslint-disable-next-line no-empty
+    } catch (error) {
 
-        writeIndex([path.resolve(fixturesPath, './mixed')]);
+    }
 
-        const indexCode = fs.readFileSync(indexFilePath, 'utf8');
+    writeIndex([path.resolve(fixturesPath, './mixed')]);
 
-        expect(indexCode).to.equal(codeExample(`
+    const indexCode = fs.readFileSync(indexFilePath, 'utf8');
+
+    expect(indexCode).to.equal(codeExample(`
 'create index';
 
 export bar from './bar';
 export foo from './foo.js';
         `));
-    });
+  });
 });

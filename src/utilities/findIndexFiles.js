@@ -1,28 +1,28 @@
+import path from 'path';
 import _ from 'lodash';
 import glob from 'glob';
-import path from 'path';
 import validateTargetDirectory from './validateTargetDirectory';
 
 export default (directoryPath) => {
-    let targetDirectories;
+  let targetDirectories;
 
-    targetDirectories = glob.sync(path.join(directoryPath, './**/index.js'));
+  targetDirectories = glob.sync(path.join(directoryPath, './**/index.js'));
 
-    targetDirectories = _.filter(targetDirectories, (targetDirectoryPath) => {
-        try {
-            validateTargetDirectory(path.dirname(targetDirectoryPath));
+  targetDirectories = _.filter(targetDirectories, (targetDirectoryPath) => {
+    try {
+      validateTargetDirectory(path.dirname(targetDirectoryPath));
 
-            return true;
-        /* eslint-disable no-empty */
-        } catch (error) {
+      return true;
 
-        }
-        /* eslint-enable no-empty */
+      // eslint-disable-next-line no-empty
+    } catch (error) {
 
-        return false;
-    });
+    }
 
-    targetDirectories = _.map(targetDirectories, path.dirname);
+    return false;
+  });
 
-    return targetDirectories;
+  targetDirectories = _.map(targetDirectories, path.dirname);
+
+  return targetDirectories;
 };

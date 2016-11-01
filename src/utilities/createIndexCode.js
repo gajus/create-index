@@ -1,37 +1,37 @@
 import _ from 'lodash';
 
 const safeVariableName = (fileName) => {
-    const indexOfDot = fileName.indexOf('.');
+  const indexOfDot = fileName.indexOf('.');
 
-    if (indexOfDot === -1) {
-        return fileName;
-    } else {
-        return fileName.slice(0, indexOfDot);
-    }
+  if (indexOfDot === -1) {
+    return fileName;
+  } else {
+    return fileName.slice(0, indexOfDot);
+  }
 };
 
 const buildExportBlock = (files) => {
-    let importBlock;
+  let importBlock;
 
-    importBlock = _.map(files, (fileName) => {
-        return 'export ' + safeVariableName(fileName) + ' from \'./' + fileName + '\';';
-    });
+  importBlock = _.map(files, (fileName) => {
+    return 'export ' + safeVariableName(fileName) + ' from \'./' + fileName + '\';';
+  });
 
-    importBlock = importBlock.join('\n');
+  importBlock = importBlock.join('\n');
 
-    return importBlock;
+  return importBlock;
 };
 
 export default (filePaths) => {
-    let code;
+  let code;
 
-    code = '\'create index\';\n\n';
+  code = '\'create index\';\n\n';
 
-    if (filePaths.length) {
-        const sortedFilePaths = filePaths.sort();
+  if (filePaths.length) {
+    const sortedFilePaths = filePaths.sort();
 
-        code += buildExportBlock(sortedFilePaths) + '\n\n';
-    }
+    code += buildExportBlock(sortedFilePaths) + '\n\n';
+  }
 
-    return code;
+  return code;
 };
