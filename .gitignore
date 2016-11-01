@@ -5,6 +5,7 @@ dist
 .*
 !.babelrc
 !.editorconfig
+!.eslintrc
 !.gitignore
 !.npmignore
 !.travis.yml

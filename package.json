@@ -28,6 +28,8 @@
   "devDependencies": {
     "chai": "^3.5.0",
     "pragmatist": "^3.0.21"
+    "eslint": "^3.9.1",
+    "eslint-config-canonical": "^4.0.0"
   },
   "dependencies": {
     "glob": "^7.0.3",
