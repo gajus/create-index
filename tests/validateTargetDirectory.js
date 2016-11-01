@@ -6,7 +6,7 @@ import {
 } from 'chai';
 import validateTargetDirectory from '../src/utilities/validateTargetDirectory';
 
-const fixturesPath = path.resolve(__dirname, '../fixtures/validate-target-directory');
+const fixturesPath = path.resolve(__dirname, 'fixtures/validate-target-directory');
 
 describe('validateTargetDirectory()', () => {
   describe('directory path', () => {

@@ -8,11 +8,11 @@ import {
 import writeIndex from '../src/utilities/writeIndex';
 import codeExample from './codeExample';
 
-const fixturesPath = path.resolve(__dirname, '../fixtures/write-index');
+const fixturesPath = path.resolve(__dirname, 'fixtures/write-index');
 
 describe('writeIndex()', () => {
   it('creates index in target directory', () => {
-    const indexFilePath = path.resolve(fixturesPath, './mixed/index.js');
+    const indexFilePath = path.resolve(fixturesPath, 'mixed/index.js');
 
     try {
       fs.unlinkSync(indexFilePath);
@@ -22,7 +22,7 @@ describe('writeIndex()', () => {
 
     }
 
-    writeIndex([path.resolve(fixturesPath, './mixed')]);
+    writeIndex([path.resolve(fixturesPath, 'mixed')]);
 
     const indexCode = fs.readFileSync(indexFilePath, 'utf8');
 

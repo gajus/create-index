@@ -14,6 +14,6 @@ describe('findIndexFiles()', () => {
     names = findIndexFiles(path.resolve(fixturesPath));
     names = names.sort();
 
-    expect(names).to.deep.equal(glob.sync(path.resolve(fixturesPath, './**/find-*')));
+    expect(names).to.deep.equal(glob.sync(path.resolve(fixturesPath, '**/find-*')));
   });
 });

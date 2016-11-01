@@ -4,7 +4,7 @@ import {
 } from 'chai';
 import readDirectory from '../src/utilities/readDirectory';
 
-const fixturesPath = path.resolve(__dirname, '../fixtures/read-directory');
+const fixturesPath = path.resolve(__dirname, 'fixtures/read-directory');
 
 describe('readDirectory()', () => {
   context('target directory contains child directories', () => {
