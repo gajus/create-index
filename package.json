@@ -23,16 +23,19 @@
   },
   "license": "BSD-3-Clause",
   "scripts": {
-    "lint": "pragmatist lint",
-    "test": "pragmatist test --type-assertions",
-    "build": "pragmatist build --es5",
+    "lint": "eslint ./src ./tests",
+    "test": "mocha --compilers js:babel-register ./tests",
+    "build": "babel build --es5",
     "create-index": "node ./dist/bin/create-index ./src/utilities"
   },
   "devDependencies": {
+    "babel-cli": "^6.18.0",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.18.0",
+    "babel-register": "^6.18.0",
     "chai": "^3.5.0",
-    "pragmatist": "^3.0.21"
     "eslint": "^3.9.1",
-    "eslint-config-canonical": "^4.0.0"
+    "eslint-config-canonical": "^4.0.0",
+    "mocha": "^3.1.2"
   },
   "dependencies": {
     "glob": "^7.0.3",
