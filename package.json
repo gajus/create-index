@@ -24,7 +24,7 @@
   "license": "BSD-3-Clause",
   "scripts": {
     "lint": "eslint ./src ./tests",
-    "test": "mocha --compilers js:babel-register ./tests",
+    "test": "mocha --compilers js:babel-register",
     "build": "babel build --es5",
     "create-index": "node ./dist/bin/create-index ./src/utilities"
   },
