@@ -34,7 +34,7 @@
 This created `index.js` with:
 
 ```js
-'create index';
+// @create-index
 
 export bar from './bar.js';
 export foo from './foo.js';
@@ -64,7 +64,7 @@ Lets create a new file and re-run `create-index`:
 This have updated `index.js` file:
 
 ```js
-'create index';
+// @create-index
 
 export bar from './bar.js';
 export baz from './baz.js';
@@ -152,10 +152,10 @@ Note that the `writeIndex` function is synchronous.
 If there is no `./index.js`, it will create a new file, e.g.
 
 ```js
-'create index';
+// @create-index
 ```
 
-Created index file must start with `'create index';\n\n`. This is used to make sure that `create-index` does not accidentally overwrite your local files.
+Created index file must start with `// @create-index\n\n`. This is used to make sure that `create-index` does not accidentally overwrite your local files.
 
 If there are sibling files, index file will `import` them and `export`, e.g.
 

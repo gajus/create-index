@@ -25,7 +25,7 @@ export default (targetDirectory) => {
 
   const indexFile = fs.readFileSync(indexFilePath, 'utf8');
 
-  if (!_.startsWith(indexFile, '\'create index\';\n')) {
+  if (!_.startsWith(indexFile, '// @create-index\n')) {
     throw new Error('"' + indexFilePath + '" unsafe index.');
   }
 
