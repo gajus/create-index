@@ -1,6 +1,6 @@
+coverage
 fixtures
 src
-tests
-coverage
+test
 .*
 *.log
