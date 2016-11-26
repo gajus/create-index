@@ -29,8 +29,16 @@ describe('writeIndex()', () => {
     expect(indexCode).to.equal(codeExample(`
 // @create-index
 
-export bar from './bar';
-export foo from './foo.js';
+import _bar from './bar';
+export const bar = _bar;
+
+import _foo from './foo.js';
+export const foo = _foo;
+
+export default {
+  bar,
+  foo
+};
         `));
   });
 });

@@ -14,8 +14,19 @@ const buildExportBlock = (files) => {
   let importBlock;
 
   importBlock = _.map(files, (fileName) => {
-    return 'export ' + _.camelCase(safeVariableName(fileName)) + ' from \'./' + fileName + '\';';
+    const moduleName = _.camelCase(safeVariableName(fileName));
+
+    return 'import _' + moduleName + ' from \'./' + fileName + '\';\n' +
+       'export const ' + moduleName + ' = _' + moduleName + ';\n';
   });
+
+  importBlock.push('export default {');
+  importBlock.push.apply(importBlock, _.map(files, (fileName, idx) => {
+    const moduleName = _.camelCase(safeVariableName(fileName));
+
+    return '  ' + moduleName + (idx + 1 < files.length ? ',' : '');
+  }), '');
+  importBlock.push('};');
 
   importBlock = importBlock.join('\n');
 
