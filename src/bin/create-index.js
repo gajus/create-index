@@ -20,5 +20,5 @@ const argv = yargs
   .argv;
 
 writeIndexCli(argv._, {
-  updateIndex: argv.updateIndex
+  updateIndex: argv.update
 });
