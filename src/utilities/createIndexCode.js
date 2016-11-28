@@ -25,7 +25,7 @@ const buildExportBlock = (files) => {
 export default (filePaths) => {
   let code;
 
-  code = '\'create index\';\n\n';
+  code = '// @create-index\n\n';
 
   if (filePaths.length) {
     const sortedFilePaths = filePaths.sort();
