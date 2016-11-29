@@ -1,34 +1,18 @@
 {
-  "name": "create-index",
-  "description": "Creates ES6 ./index.js file in target directories that imports and exports all sibling files and directories.",
-  "version": "1.0.0",
-  "main": "./dist/index.js",
-  "bin": "./dist/bin/create-index.js",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/gajus/create-index"
-  },
-  "keywords": [
-    "index",
-    "import",
-    "export"
-  ],
-  "engines": {
-    "node": ">=5"
-  },
   "author": {
-    "name": "Gajus Kuizinas",
     "email": "gajus@gajus.com",
+    "name": "Gajus Kuizinas",
     "url": "http://gajus.com"
   },
-  "license": "BSD-3-Clause",
-  "scripts": {
-    "lint": "NODE_ENV=development eslint ./src ./tests",
-    "test": "npm run build && npm run lint && NODE_ENV=development mocha --compilers js:babel-register",
-    "build": "NODE_ENV=production babel --source-maps --copy-files ./src --out-dir ./dist",
-    "create-index": "node ./dist/bin/create-index ./src/utilities",
-    "precommit": "npm run test"
+  "bin": "./dist/bin/create-index.js",
+  "dependencies": {
+    "chalk": "^1.1.3",
+    "glob": "^7.1.1",
+    "lodash": "^4.16.6",
+    "moment": "^2.15.2",
+    "yargs": "^6.3.0"
   },
+  "description": "Creates ES6 ./index.js file in target directories that imports and exports all sibling files and directories.",
   "devDependencies": {
     "babel-cli": "^6.18.0",
     "babel-plugin-transform-es2015-destructuring": "^6.18.0",
@@ -42,11 +26,27 @@
     "husky": "^0.11.9",
     "mocha": "^3.1.2"
   },
-  "dependencies": {
-    "glob": "^7.1.1",
-    "lodash": "^4.16.6",
-    "yargs": "^6.3.0",
-    "chalk": "^1.1.3",
-    "moment": "^2.15.2"
-  }
+  "engines": {
+    "node": ">=5"
+  },
+  "keywords": [
+    "index",
+    "import",
+    "export"
+  ],
+  "license": "BSD-3-Clause",
+  "main": "./dist/index.js",
+  "name": "create-index",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gajus/create-index"
+  },
+  "scripts": {
+    "build": "NODE_ENV=production babel --source-maps --copy-files ./src --out-dir ./dist",
+    "create-index": "node ./dist/bin/create-index ./src/utilities",
+    "lint": "NODE_ENV=development eslint ./src ./tests",
+    "precommit": "npm run test",
+    "test": "npm run build && npm run lint && NODE_ENV=development mocha --compilers js:babel-register"
+  },
+  "version": "1.0.0"
 }
