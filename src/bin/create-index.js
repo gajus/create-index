@@ -16,7 +16,7 @@ const argv = yargs
     }
   })
   .options({
-    'banner': {
+    banner: {
       description: 'Add a custom banner at the top of the index file',
       type: 'string'
     }
@@ -26,6 +26,6 @@ const argv = yargs
   .argv;
 
 writeIndexCli(argv._, {
-  updateIndex: argv.update,
-  banner: argv.banner
+  banner: argv.banner,
+  updateIndex: argv.update
 });
