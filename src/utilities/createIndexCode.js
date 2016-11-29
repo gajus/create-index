@@ -22,10 +22,22 @@ const buildExportBlock = (files) => {
   return importBlock;
 };
 
-export default (filePaths) => {
+export default (filePaths, options = {}) => {
   let code;
 
-  code = '// @create-index\n\n';
+  code = '';
+
+  if (options.banner) {
+    const banners = _.isArray(options.banner) ? options.banner : [options.banner];
+
+    banners.forEach((banner) => {
+      code += banner + '\n';
+    });
+
+    code += '\n';
+  }
+
+  code += '// @create-index\n\n';
 
   if (filePaths.length) {
     const sortedFilePaths = filePaths.sort();

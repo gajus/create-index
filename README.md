@@ -86,6 +86,7 @@ Options:
                 files that start with "// @create-index\n" (create-index index
                 file). Updates found index files. Does not create new index
                 files.                                [boolean] [default: false]
+  --banner      Add a custom banner at the top of the index file        [string]
 
 Examples:
   create-index ./src ./src/utilities   Creates or updates an existing
