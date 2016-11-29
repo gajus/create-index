@@ -6,12 +6,11 @@ import validateTargetDirectory from './validateTargetDirectory';
 import readDirectory from './readDirectory';
 import sortByDepth from './sortByDepth';
 
-export default (directoryPaths) => {
-  const sortedDirectoryPaths = sortByDepth(directoryPaths);
-
-  _.forEach(sortedDirectoryPaths, (directoryPath) => {
-    validateTargetDirectory(directoryPath);
-  });
+export default (directoryPaths, options = {}) => {
+  const sortedDirectoryPaths = sortByDepth(directoryPaths)
+    .filter((directoryPath) => {
+      return validateTargetDirectory(directoryPath, {silent: options.ignoreUnsafe});
+    });
 
   _.forEach(sortedDirectoryPaths, (directoryPath) => {
     const siblings = readDirectory(directoryPath);

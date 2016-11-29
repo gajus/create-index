@@ -37,10 +37,12 @@ const removeDuplicates = (files) => {
   });
 };
 
-export default (directoryPath) => {
+export default (directoryPath, options = {}) => {
   let children;
 
-  validateTargetDirectory(directoryPath);
+  if (!validateTargetDirectory(directoryPath, {silent: options.silent})) {
+    return false;
+  }
 
   children = fs.readdirSync(directoryPath);
 

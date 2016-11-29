@@ -8,10 +8,26 @@ import {
 const argv = yargs
   .demand(1)
   .options({
+    recursive: {
+      alias: 'r',
+      default: false,
+      description: 'Create/update index files recursively. Halts on any unsafe "index.js" files.',
+      type: 'boolean'
+    }
+  })
+  .options({
+    ignoreUnsafe: {
+      alias: 'i',
+      default: false,
+      description: 'Ignores unsafe "index.js" files instead of halting.',
+      type: 'boolean'
+    }
+  })
+  .options({
     update: {
       alias: 'u',
       default: false,
-      description: 'Recursively iterates target directories looking for "index.js" files that start with "// @create-index\\n" (create-index index file). Updates found index files. Does not create new index files.',
+      description: 'Updates only previously created index files (recursively).',
       type: 'boolean'
     }
   })
@@ -27,5 +43,7 @@ const argv = yargs
 
 writeIndexCli(argv._, {
   banner: argv.banner,
+  ignoreUnsafe: argv.ignoreUnsafe,
+  recursive: argv.recursive,
   updateIndex: argv.update
 });
