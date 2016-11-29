@@ -26,7 +26,8 @@
     "lint": "NODE_ENV=development eslint ./src ./tests",
     "test": "npm run build && npm run lint && NODE_ENV=development mocha --compilers js:babel-register",
     "build": "NODE_ENV=production babel --source-maps --copy-files ./src --out-dir ./dist",
-    "create-index": "node ./dist/bin/create-index ./src/utilities"
+    "create-index": "node ./dist/bin/create-index ./src/utilities",
+    "precommit": "npm run test"
   },
   "devDependencies": {
     "babel-cli": "^6.18.0",
@@ -38,6 +39,7 @@
     "chai": "^3.5.0",
     "eslint": "^3.9.1",
     "eslint-config-canonical": "^4.0.0",
+    "husky": "^0.11.9",
     "mocha": "^3.1.2"
   },
   "dependencies": {
