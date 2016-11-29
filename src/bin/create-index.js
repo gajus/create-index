@@ -15,10 +15,17 @@ const argv = yargs
       type: 'boolean'
     }
   })
+  .options({
+    'banner': {
+      description: 'Add a custom banner at the top of the index file',
+      type: 'string'
+    }
+  })
   .example('create-index ./src ./src/utilities', 'Creates or updates an existing create-index index file in the target (./src, ./src/utilities) directories.')
   .example('create-index --update ./src ./tests', 'Finds all create-index index files in the target directories and descending directories. Updates found index files.')
   .argv;
 
 writeIndexCli(argv._, {
-  updateIndex: argv.update
+  updateIndex: argv.update,
+  banner: argv.banner
 });
