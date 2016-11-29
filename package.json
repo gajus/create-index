@@ -23,9 +23,9 @@
   },
   "license": "BSD-3-Clause",
   "scripts": {
-    "lint": "eslint ./src ./tests",
-    "test": "mocha --compilers js:babel-register",
-    "build": "babel --source-maps --copy-files ./src --out-dir ./dist",
+    "lint": "NODE_ENV=development eslint ./src ./tests",
+    "test": "npm run build && npm run lint && NODE_ENV=development mocha --compilers js:babel-register",
+    "build": "NODE_ENV=production babel --source-maps --copy-files ./src --out-dir ./dist",
     "create-index": "node ./dist/bin/create-index ./src/utilities"
   },
   "devDependencies": {
