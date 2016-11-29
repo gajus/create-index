@@ -83,7 +83,7 @@ create-index --help
 
 Options:
   --update, -u  Recursively iterates target directories looking for "index.js"
-                files that start with "'create index';\n" (create-index index
+                files that start with "// @create-index\n" (create-index index
                 file). Updates found index files. Does not create new index
                 files.                                [boolean] [default: false]
 
@@ -172,7 +172,7 @@ drwxr-xr-x   2 gajus  staff    68B  6 Jan 15:29 foo
 Given the above directory contents, `./index.js` will be:
 
 ```js
-'create index';
+// @create-index
 
 import bar from './bar';
 import foo from './foo.js';
@@ -187,6 +187,6 @@ When file has the same name as a sibling directory, file `import` takes preceden
 
 Directories that do not have `./index.js` in themselves will be excluded.
 
-When run again, `create-index` will update existing `./index.js` if it starts with `'create index';\n\n`.
+When run again, `create-index` will update existing `./index.js` if it starts with `// @create-index\n\n`.
 
-If `create-index` is executed against a directory that contains `./index.js`, which does not start with `'create index';\n\n`, an error will be thrown.
+If `create-index` is executed against a directory that contains `./index.js`, which does not start with `// @create-index\n\n`, an error will be thrown.

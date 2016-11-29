@@ -27,7 +27,7 @@ describe('writeIndex()', () => {
     const indexCode = fs.readFileSync(indexFilePath, 'utf8');
 
     expect(indexCode).to.equal(codeExample(`
-'create index';
+// @create-index
 
 export bar from './bar';
 export foo from './foo.js';

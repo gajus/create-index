@@ -8,10 +8,10 @@ import {
 const argv = yargs
   .demand(1)
   .options({
-    'update': {
+    update: {
       alias: 'u',
       default: false,
-      description: 'Recursively iterates target directories looking for "index.js" files that start with "\'create index\';\\n" (create-index index file). Updates found index files. Does not create new index files.',
+      description: 'Recursively iterates target directories looking for "index.js" files that start with "// @create-index\\n" (create-index index file). Updates found index files. Does not create new index files.',
       type: 'boolean'
     }
   })
