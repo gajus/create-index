@@ -64,7 +64,7 @@ export default (directoryPaths, options = {}) => {
     fs.writeFileSync(indexFilePath, indexCode);
 
     if (existingIndexCode && existingIndexCode === indexCode) {
-      log(indexFilePath, chalk.yellow('[index have not changed]'));
+      log(indexFilePath, chalk.yellow('[index has not changed]'));
     } else if (existingIndexCode && existingIndexCode !== indexCode) {
       log(indexFilePath, chalk.green('[updated index]'));
     } else {
