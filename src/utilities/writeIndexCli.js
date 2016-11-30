@@ -15,25 +15,35 @@ export default (directoryPaths, options = {}) => {
   sortedDirectoryPaths = sortByDepth(directoryPaths);
 
   log('Target directories', sortedDirectoryPaths);
-  log('Update index:', options.updateIndex ? chalk.green('true') : chalk.red('false'));
-
   if (options.updateIndex) {
-    sortedDirectoryPaths = _.map(sortedDirectoryPaths, findIndexFiles);
+    log('Update index:', options.updateIndex ? chalk.green('true') : chalk.red('false'));
+  } else {
+    log('Recursive:', options.ignoreUnsafe ? chalk.green('true') : chalk.red('false'));
+    log('Ignore unsafe:', options.ignoreUnsafe ? chalk.green('true') : chalk.red('false'));
+  }
+
+  if (options.updateIndex || options.recursive) {
+    sortedDirectoryPaths = _.map(sortedDirectoryPaths, (dir) => {
+      return findIndexFiles(dir, {
+        fileName: options.updateIndex ? 'index.js' : '*',
+        silent: options.updateIndex || options.ignoreUnsafe
+      });
+    });
     sortedDirectoryPaths = _.flatten(sortedDirectoryPaths);
     sortedDirectoryPaths = _.uniq(sortedDirectoryPaths);
     sortedDirectoryPaths = sortByDepth(sortedDirectoryPaths);
 
-    log('Found index file in:', sortedDirectoryPaths);
+    log('Updating index files in:', sortedDirectoryPaths.reverse().join(', '));
   }
 
-  _.forEach(sortedDirectoryPaths, (directoryPath) => {
-    validateTargetDirectory(directoryPath);
+  sortedDirectoryPaths = sortedDirectoryPaths.filter((directoryPath) => {
+    return validateTargetDirectory(directoryPath, {silent: options.ignoreUnsafe});
   });
 
   _.forEach(sortedDirectoryPaths, (directoryPath) => {
     let existingIndexCode;
 
-    const siblings = readDirectory(directoryPath);
+    const siblings = readDirectory(directoryPath, {silent: options.ignoreUnsafe});
 
     const indexCode = createIndexCode(siblings, {
       banner: options.banner

@@ -43,5 +43,10 @@ describe('validateTargetDirectory()', () => {
         }).to.throw(Error, '"' + path.resolve(fixturesPath, 'unsafe-index/index.js') + '" unsafe index.');
       });
     });
+    context('unsafe ignored', () => {
+      it('returns false', () => {
+        expect(validateTargetDirectory(path.resolve(fixturesPath, 'unsafe-index'), {silent: true})).to.equal(false);
+      });
+    });
   });
 });
