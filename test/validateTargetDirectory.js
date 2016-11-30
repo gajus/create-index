@@ -36,6 +36,11 @@ describe('validateTargetDirectory()', () => {
         expect(validateTargetDirectory(path.resolve(fixturesPath, 'safe-index'))).to.equal(true);
       });
     });
+    context('safe with banner', () => {
+      it('returns true', () => {
+        expect(validateTargetDirectory(path.resolve(fixturesPath, 'safe-index-with-banner'))).to.equal(true);
+      });
+    });
     context('unsafe', () => {
       it('throws an error', () => {
         expect(() => {
