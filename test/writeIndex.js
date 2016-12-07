@@ -24,12 +24,13 @@ describe('writeIndex()', () => {
 
     writeIndex([path.resolve(fixturesPath, 'mixed')]);
 
+    console.log({indexFilePath});
     const indexCode = fs.readFileSync(indexFilePath, 'utf8');
 
     expect(indexCode).to.equal(codeExample(`
 // @create-index
 
-import _bar from './bar';
+import * as _bar from './bar';
 export const bar = _bar;
 
 import _foo from './foo.js';

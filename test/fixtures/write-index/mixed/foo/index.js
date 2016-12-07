@@ -1,1 +1,3 @@
 // @create-index
+
+export default () => {};

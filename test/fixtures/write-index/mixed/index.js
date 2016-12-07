@@ -1,6 +1,6 @@
 // @create-index
 
-import _bar from './bar';
+import * as _bar from './bar';
 export const bar = _bar;
 
 import _foo from './foo.js';

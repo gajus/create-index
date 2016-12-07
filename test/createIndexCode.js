@@ -7,6 +7,20 @@ import createIndexCode from '../src/utilities/createIndexCode';
 import codeExample from './codeExample';
 
 describe('createIndexCode()', () => {
+  let parseFiles;
+
+  beforeEach(() => {
+    parseFiles = (files) => {
+      return files.map((fileName) => {
+        return {
+          containsDefaultExport: true,
+          fileName
+        };
+      });
+    };
+    createIndexCode.__Rewire__('parseFiles', parseFiles);
+  });
+
   it('describes no children', () => {
     const indexCode = createIndexCode([]);
 

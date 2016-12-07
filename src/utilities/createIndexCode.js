@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import parseFiles from './parseFiles';
 
 const safeVariableName = (fileName) => {
   const indexOfDot = fileName.indexOf('.');
@@ -10,14 +11,24 @@ const safeVariableName = (fileName) => {
   }
 };
 
-const buildExportBlock = (files) => {
+const buildExportBlock = (files, directory) => {
   let importBlock;
 
-  importBlock = _.map(files, (fileName) => {
-    const moduleName = _.camelCase(safeVariableName(fileName));
+  const fileDetails = parseFiles(files, directory);
 
-    return 'import _' + moduleName + ' from \'./' + fileName + '\';\n' +
-       'export const ' + moduleName + ' = _' + moduleName + ';\n';
+  importBlock = _.map(fileDetails, (file) => {
+    const moduleName = _.camelCase(safeVariableName(file.fileName));
+
+    let statement;
+
+    if (file.containsDefaultExport) {
+      statement = 'import _' + moduleName + ' from \'./' + file.fileName + '\';\n';
+    } else {
+      statement = 'import * as _' + moduleName + ' from \'./' + file.fileName + '\';\n';
+    }
+    statement += 'export const ' + moduleName + ' = _' + moduleName + ';\n';
+
+    return statement;
   });
 
   importBlock.push('export default {');
@@ -53,7 +64,7 @@ export default (filePaths, options = {}) => {
   if (filePaths.length) {
     const sortedFilePaths = filePaths.sort();
 
-    code += buildExportBlock(sortedFilePaths) + '\n\n';
+    code += buildExportBlock(sortedFilePaths, options.directoryPath) + '\n\n';
   }
 
   return code;
