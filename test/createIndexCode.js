@@ -7,6 +7,20 @@ import createIndexCode from '../src/utilities/createIndexCode';
 import codeExample from './codeExample';
 
 describe('createIndexCode()', () => {
+  let parseFiles;
+
+  beforeEach(() => {
+    parseFiles = (files) => {
+      return files.map((fileName) => {
+        return {
+          containsDefaultExport: true,
+          fileName
+        };
+      });
+    };
+    createIndexCode.__Rewire__('parseFiles', parseFiles);
+  });
+
   it('describes no children', () => {
     const indexCode = createIndexCode([]);
 
@@ -20,7 +34,12 @@ describe('createIndexCode()', () => {
     expect(indexCode).to.equal(codeExample(`
 // @create-index
 
-export foo from './foo';
+import _foo from './foo';
+export const foo = _foo;
+
+export default {
+  foo
+};
         `));
   });
   it('describes multiple children', () => {
@@ -29,8 +48,16 @@ export foo from './foo';
     expect(indexCode).to.equal(codeExample(`
 // @create-index
 
-export bar from './bar';
-export foo from './foo';
+import _bar from './bar';
+export const bar = _bar;
+
+import _foo from './foo';
+export const foo = _foo;
+
+export default {
+  bar,
+  foo
+};
         `));
   });
   context('file with extension', () => {
@@ -40,7 +67,12 @@ export foo from './foo';
       expect(indexCode).to.equal(codeExample(`
 // @create-index
 
-export foo from './foo.js';
+import _foo from './foo.js';
+export const foo = _foo;
+
+export default {
+  foo
+};
             `));
     });
   });
@@ -51,8 +83,16 @@ export foo from './foo.js';
       expect(indexCode).to.equal(codeExample(`
 // @create-index
 
-export bar from './bar';
-export foo from './foo';
+import _bar from './bar';
+export const bar = _bar;
+
+import _foo from './foo';
+export const foo = _foo;
+
+export default {
+  bar,
+  foo
+};
             `));
     });
   });

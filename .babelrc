@@ -4,5 +4,6 @@
     "transform-export-extensions",
     "transform-es2015-destructuring",
     "transform-es2015-parameters"
-  ]
+  ],
+  "env": { "development": { "plugins": ["rewire"] } }
 }
