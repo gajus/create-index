@@ -25,7 +25,7 @@ describe('readDirectory()', () => {
     it('gets names of the children directories', () => {
       const names = readDirectory(path.resolve(fixturesPath, 'children-directories-unsafe-name'));
 
-      expect(names).to.deep.equal(['present']);
+      expect(names).to.deep.equal(['bar-bar', 'foo-foo', 'present']);
     });
   });
   context('target directory contains ./index.js', () => {
