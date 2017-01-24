@@ -18,7 +18,7 @@ export default (directoryPaths, options = {}) => {
   if (options.updateIndex) {
     log('Update index:', options.updateIndex ? chalk.green('true') : chalk.red('false'));
   } else {
-    log('Recursive:', options.ignoreUnsafe ? chalk.green('true') : chalk.red('false'));
+    log('Recursive:', options.recursive ? chalk.green('true') : chalk.red('false'));
     log('Ignore unsafe:', options.ignoreUnsafe ? chalk.green('true') : chalk.red('false'));
   }
 
