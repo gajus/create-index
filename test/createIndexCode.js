@@ -20,7 +20,7 @@ describe('createIndexCode()', () => {
     expect(indexCode).to.equal(codeExample(`
 // @create-index
 
-export foo from './foo';
+export { default as foo } from './foo';
         `));
   });
   it('describes multiple children', () => {
@@ -29,8 +29,8 @@ export foo from './foo';
     expect(indexCode).to.equal(codeExample(`
 // @create-index
 
-export bar from './bar';
-export foo from './foo';
+export { default as bar } from './bar';
+export { default as foo } from './foo';
         `));
   });
   context('file with extension', () => {
@@ -40,7 +40,7 @@ export foo from './foo';
       expect(indexCode).to.equal(codeExample(`
 // @create-index
 
-export foo from './foo.js';
+export { default as foo } from './foo.js';
             `));
     });
   });
@@ -51,8 +51,8 @@ export foo from './foo.js';
       expect(indexCode).to.equal(codeExample(`
 // @create-index
 
-export bar from './bar';
-export foo from './foo';
+export { default as bar } from './bar';
+export { default as foo } from './foo';
             `));
     });
   });

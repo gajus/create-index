@@ -29,8 +29,8 @@ describe('writeIndex()', () => {
     expect(indexCode).to.equal(codeExample(`
 // @create-index
 
-export bar from './bar';
-export foo from './foo.js';
+export { default as bar } from './bar';
+export { default as foo } from './foo.js';
         `));
   });
 });
