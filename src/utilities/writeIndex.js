@@ -13,7 +13,7 @@ export default (directoryPaths, options = {}) => {
     });
 
   _.forEach(sortedDirectoryPaths, (directoryPath) => {
-    const siblings = readDirectory(directoryPath);
+    const siblings = readDirectory(directoryPath, options);
     const indexCode = createIndexCode(siblings);
     const indexFilePath = path.resolve(directoryPath, 'index.js');
 

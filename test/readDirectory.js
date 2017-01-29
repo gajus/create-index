@@ -49,6 +49,45 @@ describe('readDirectory()', () => {
       expect(names).to.deep.equal(['present.js']);
     });
   });
+  context('target directory contains non js files, and not configured to allow that', () => {
+    it('prefers file', () => {
+      const names = readDirectory(path.resolve(fixturesPath, 'children-files-alt-extension'));
+
+      expect(names).to.deep.equal(['present.js']);
+    });
+  });
+  context('target directory contains non js files, and allowing only jsx', () => {
+    it('prefers file', () => {
+      const options = { extensions: ['jsx'] };
+      const names = readDirectory(path.resolve(fixturesPath, 'children-files-alt-extension'), options);
+
+      expect(names).to.deep.equal(['bar.jsx']);
+    });
+  });
+  context('target directory contains non js files, and allowing both js and jsx', () => {
+    it('prefers file', () => {
+      const options = { extensions: ['js', 'jsx'] };
+      const names = readDirectory(path.resolve(fixturesPath, 'children-files-alt-extension'), options);
+
+      expect(names).to.deep.equal(['bar.jsx', 'present.js']);
+    });
+  });
+  context('target directory contains homonyms files, and allowing both js and jsx, will prefer JS as it is first extension listed', () => {
+    it('prefers file', () => {
+      const options = { extensions: ['js', 'jsx'] };
+      const names = readDirectory(path.resolve(fixturesPath, 'children-files-alt-extension-with-homonyms'), options);
+
+      expect(names).to.deep.equal(['bar.js', 'present.js']);
+    });
+  });
+  context('target directory contains homonyms files, and allowing both js and jsx, will prefer JSX as it is first extension listed', () => {
+    it('prefers file', () => {
+      const options = { extensions: ['jsx', 'js'] };
+      const names = readDirectory(path.resolve(fixturesPath, 'children-files-alt-extension-with-homonyms'), options);
+
+      expect(names).to.deep.equal(['bar.jsx', 'present.js']);
+    });
+  });
   context('target directory contains files with no extension', () => {
     it('ignores files', () => {
       const names = readDirectory(path.resolve(fixturesPath, 'children-files-no-extension'));
