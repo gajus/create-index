@@ -36,8 +36,8 @@ This created `index.js` with:
 ```js
 // @create-index
 
-export bar from './bar.js';
-export foo from './foo.js';
+export { default as bar } from './bar.js';
+export { default as foo } from './foo.js';
 
 ```
 
@@ -66,9 +66,9 @@ This have updated `index.js` file:
 ```js
 // @create-index
 
-export bar from './bar.js';
-export baz from './baz.js';
-export foo from './foo.js';
+export { default as bar } from './bar.js';
+export { default as baz } from './baz.js';
+export { default as foo } from './foo.js';
 
 ```
 
@@ -177,8 +177,8 @@ Given the above directory contents, `./index.js` will be:
 ```js
 // @create-index
 
-import bar from './bar';
-import foo from './foo.js';
+import { default as bar } from './bar';
+import { default as foo } from './foo.js';
 
 export {
     bar,
