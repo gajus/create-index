@@ -31,9 +31,26 @@ const isSafeName = (fileName) => {
   return /^[a-z][a-z0-9._]+$/i.test(fileName);
 };
 
-const removeDuplicates = (files) => {
+const stripExtension = (fileName) => {
+  const pos = fileName.lastIndexOf('.');
+
+  if (pos === -1) {
+    return fileName;
+  }
+
+  return fileName.substr(0, pos);
+};
+
+const removeDuplicates = (files, preferredExtension) => {
   return _.filter(files, (fileName) => {
-    return !_.includes(files, fileName + '.js');
+    const withoutExtension = stripExtension(fileName);
+    const mainAlternative = withoutExtension + '.' + preferredExtension;
+
+    if (mainAlternative === fileName) {
+      return true;
+    }
+
+    return !_.includes(files, mainAlternative);
   });
 };
 
@@ -45,6 +62,7 @@ export default (directoryPath, options = {}) => {
   }
 
   children = fs.readdirSync(directoryPath);
+  const {extensions = ['js']} = options;
 
   children = _.filter(children, (fileName) => {
     const absolutePath = path.resolve(directoryPath, fileName);
@@ -66,7 +84,9 @@ export default (directoryPath, options = {}) => {
       return false;
     }
 
-    if (!isDirectory && !_.endsWith(fileName, '.js')) {
+    if (!isDirectory && !extensions.some((ext) => {
+      return _.endsWith(fileName, '.' + ext);
+    })) {
       return false;
     }
 
@@ -77,7 +97,7 @@ export default (directoryPath, options = {}) => {
     return true;
   });
 
-  children = removeDuplicates(children);
+  children = removeDuplicates(children, extensions[0]);
 
   return children.sort();
 };

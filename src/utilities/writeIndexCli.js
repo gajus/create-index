@@ -20,6 +20,7 @@ export default (directoryPaths, options = {}) => {
   } else {
     log('Recursive:', options.recursive ? chalk.green('true') : chalk.red('false'));
     log('Ignore unsafe:', options.ignoreUnsafe ? chalk.green('true') : chalk.red('false'));
+    log('Extensions:', chalk.green(options.extensions));
   }
 
   if (options.updateIndex || options.recursive) {
@@ -43,7 +44,10 @@ export default (directoryPaths, options = {}) => {
   _.forEach(sortedDirectoryPaths, (directoryPath) => {
     let existingIndexCode;
 
-    const siblings = readDirectory(directoryPath, {silent: options.ignoreUnsafe});
+    const siblings = readDirectory(directoryPath, {
+      extensions: options.extensions,
+      silent: options.ignoreUnsafe
+    });
 
     const indexCode = createIndexCode(siblings, {
       banner: options.banner
