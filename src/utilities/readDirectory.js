@@ -1,19 +1,8 @@
 import fs from 'fs';
 import path from 'path';
 import _ from 'lodash';
+import hasIndex from './hasIndex';
 import validateTargetDirectory from './validateTargetDirectory';
-
-const hasIndex = (directoryPath) => {
-  const indexPath = path.resolve(directoryPath, 'index.js');
-
-  try {
-    fs.statSync(indexPath);
-
-    return true;
-  } catch (error) {
-    return false;
-  }
-};
 
 const hasNoExtension = (fileName) => {
   const matches = fileName.match(/\./g);
@@ -54,15 +43,47 @@ const removeDuplicates = (files, preferredExtension) => {
   });
 };
 
-export default (directoryPath, options = {}) => {
-  let children;
+const removeIgnoredFiles = (files, ignorePatterns = []) => {
+  if (ignorePatterns.length === 0) {
+    return files;
+  }
 
+  const patterns = ignorePatterns.map((pattern) => {
+    if (_.startsWith(pattern, '/') && _.endsWith(pattern, '/')) {
+      const patternWithoutSlashes = pattern.slice(1, -1);
+
+      return new RegExp(patternWithoutSlashes);
+    }
+
+    return new RegExp(pattern);
+  });
+
+  return _.filter(files, (fileName) => {
+    let pattern;
+
+    for (pattern of patterns) {
+      if (fileName.match(pattern) !== null) {
+        return false;
+      }
+    }
+
+    return true;
+  });
+};
+
+export default (directoryPath, options = {}) => {
   if (!validateTargetDirectory(directoryPath, {silent: options.silent})) {
     return false;
   }
 
+  const {
+    extensions = ['js'],
+    config = {}
+  } = options;
+
+  let children;
+
   children = fs.readdirSync(directoryPath);
-  const {extensions = ['js']} = options;
 
   children = _.filter(children, (fileName) => {
     const absolutePath = path.resolve(directoryPath, fileName);
@@ -98,6 +119,7 @@ export default (directoryPath, options = {}) => {
   });
 
   children = removeDuplicates(children, extensions[0]);
+  children = removeIgnoredFiles(children, config.ignore);
 
   return children.sort();
 };
