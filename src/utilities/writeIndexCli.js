@@ -5,6 +5,7 @@ import chalk from 'chalk';
 import createIndexCode from './createIndexCode';
 import validateTargetDirectory from './validateTargetDirectory';
 import readDirectory from './readDirectory';
+import readIndexConfig from './readIndexConfig';
 import sortByDepth from './sortByDepth';
 import log from './log';
 import findIndexFiles from './findIndexFiles';
@@ -44,13 +45,17 @@ export default (directoryPaths, options = {}) => {
   _.forEach(sortedDirectoryPaths, (directoryPath) => {
     let existingIndexCode;
 
+    const config = readIndexConfig(directoryPath);
+
     const siblings = readDirectory(directoryPath, {
+      config,
       extensions: options.extensions,
       silent: options.ignoreUnsafe
     });
 
     const indexCode = createIndexCode(siblings, {
-      banner: options.banner
+      banner: options.banner,
+      config
     });
 
     const indexFilePath = path.resolve(directoryPath, 'index.js');

@@ -193,3 +193,37 @@ Directories that do not have `./index.js` in themselves will be excluded.
 When run again, `create-index` will update existing `./index.js` if it starts with `// @create-index\n\n`.
 
 If `create-index` is executed against a directory that contains `./index.js`, which does not start with `// @create-index\n\n`, an error will be thrown.
+
+## Ignore files on `--update`
+
+`create-index` can ignore files in a directory if `./index.js` contains special object with defined `ignore` property which takes `an array` of `regular expressions` defined as `strings`, e.g.
+
+```js
+> cat index.js
+// @create-index {"ignore": ["/baz.js$/"]}
+```
+
+```js
+> tree ./
+./
+├── bar.js
+├── baz.js
+├── foo.js
+└── index.js
+
+0 directories, 4 files
+```
+
+Given the above directory contents, after running `create-index` with `--update` flag, `./index.js` will be:
+
+```js
+// @create-index {"ignore": ["/baz.js$/"]}
+
+import { default as bar } from './bar.js';
+import { default as foo } from './foo.js';
+
+export {
+    bar,
+    foo
+};
+```

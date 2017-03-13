@@ -12,7 +12,7 @@ describe('createIndexCode()', () => {
 
     expect(indexCode).to.equal(codeExample(`
 // @create-index
-        `));
+    `));
   });
   it('describes a single child', () => {
     const indexCode = createIndexCode(['foo']);
@@ -21,7 +21,7 @@ describe('createIndexCode()', () => {
 // @create-index
 
 export { default as foo } from './foo';
-        `));
+    `));
   });
   it('describes multiple children', () => {
     const indexCode = createIndexCode(['bar', 'foo']);
@@ -31,7 +31,7 @@ export { default as foo } from './foo';
 
 export { default as bar } from './bar';
 export { default as foo } from './foo';
-        `));
+    `));
   });
   context('file with extension', () => {
     it('removes the extension from the export statement', () => {
@@ -41,7 +41,7 @@ export { default as foo } from './foo';
 // @create-index
 
 export { default as foo } from './foo.js';
-            `));
+      `));
     });
   });
   context('multiple, unsorted', () => {
@@ -53,7 +53,23 @@ export { default as foo } from './foo.js';
 
 export { default as bar } from './bar';
 export { default as foo } from './foo';
-            `));
+      `));
+    });
+  });
+
+  context('with config', () => {
+    it('should append config', () => {
+      const config = {
+        ignore: ['/^zoo/']
+      };
+      const indexCode = createIndexCode(['foo', 'bar'], {config});
+
+      expect(indexCode).to.equal(codeExample(`
+// @create-index {"ignore":["/^zoo/"]}
+
+export { default as bar } from './bar';
+export { default as foo } from './foo';
+      `));
     });
   });
 });

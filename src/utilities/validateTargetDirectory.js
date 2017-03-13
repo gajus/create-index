@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import {CREATE_INDEX_PATTERN} from './constants';
 
 export default (targetDirectory, options = {}) => {
   const silent = options.silent;
@@ -33,7 +34,7 @@ export default (targetDirectory, options = {}) => {
 
   const indexFile = fs.readFileSync(indexFilePath, 'utf8');
 
-  if (!indexFile.match(/(?:^|[\n\r]+)\/\/ @create-index[\n\r]+/)) {
+  if (!indexFile.match(CREATE_INDEX_PATTERN)) {
     if (silent) {
       return false;
     } else {
