@@ -17,7 +17,7 @@ export default (directoryPaths, options = {}) => {
     const config = readIndexConfig(directoryPath);
     const optionsWithConfig = Object.assign({}, options, {config});
     const siblings = readDirectory(directoryPath, optionsWithConfig);
-    const indexCode = createIndexCode(siblings, {config});
+    const indexCode = createIndexCode(siblings, optionsWithConfig);
     const indexFilePath = path.resolve(directoryPath, 'index.js');
 
     fs.writeFileSync(indexFilePath, indexCode);
