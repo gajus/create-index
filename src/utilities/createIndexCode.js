@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import exportNamedIndex from './exportNamedIndex';
 
 const safeVariableName = (fileName) => {
   const indexOfDot = fileName.indexOf('.');
@@ -10,11 +11,11 @@ const safeVariableName = (fileName) => {
   }
 };
 
-const buildExportBlock = (files) => {
+const buildExportBlock = (files, templateFunction) => {
   let importBlock;
 
   importBlock = _.map(files, (fileName) => {
-    return 'export { default as ' + safeVariableName(fileName) + ' } from \'./' + fileName + '\';';
+    return templateFunction(safeVariableName(fileName), fileName);
   });
 
   importBlock = importBlock.join('\n');
@@ -22,7 +23,7 @@ const buildExportBlock = (files) => {
   return importBlock;
 };
 
-export default (filePaths, options = {}) => {
+export default (filePaths, options = {}, templateFunction = exportNamedIndex) => {
   let code;
   let configCode;
 
@@ -48,7 +49,7 @@ export default (filePaths, options = {}) => {
   if (filePaths.length) {
     const sortedFilePaths = filePaths.sort();
 
-    code += buildExportBlock(sortedFilePaths) + '\n\n';
+    code += buildExportBlock(sortedFilePaths, templateFunction) + '\n\n';
   }
 
   return code;

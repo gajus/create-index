@@ -72,4 +72,20 @@ export { default as foo } from './foo';
       `));
     });
   });
+
+  context('with custom template function', () => {
+    it('should use template function', () => {
+      const config = {
+        ignore: ['/^zoo/']
+      };
+      const indexCode = createIndexCode(['foo', 'bar'], {config}, (varName, fileName) => `export * as ${varName} from './${fileName}';`);
+
+      expect(indexCode).to.equal(codeExample(`
+// @create-index {"ignore":["/^zoo/"]}
+
+export * as bar from './bar';
+export * as foo from './foo';
+      `));
+    });
+  });
 });
