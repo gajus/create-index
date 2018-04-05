@@ -1,3 +1,8 @@
 {
-  "extends": "canonical"
+  "extends": "canonical",
+  "rules": {
+    "import/max-dependencies": 0,
+    "import/extensions": 0,
+    "max-len": 0
+  }
 }
