@@ -18,6 +18,7 @@
     "babel-plugin-transform-es2015-destructuring": "^6.18.0",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.18.0",
     "babel-plugin-transform-es2015-parameters": "^6.18.0",
+    "babel-plugin-transform-es2015-spread": "^6.18.0",
     "babel-plugin-transform-export-extensions": "^6.8.0",
     "babel-register": "^6.18.0",
     "chai": "^3.5.0",
@@ -29,7 +30,7 @@
     "semantic-release": "^6.3.2"
   },
   "engines": {
-    "node": ">=5"
+    "node": ">=4.2.4"
   },
   "keywords": [
     "index",
@@ -50,5 +51,14 @@
     "precommit": "npm run test",
     "test": "npm run build && npm run lint && cross-env NODE_ENV=development mocha --compilers js:babel-register"
   },
-  "version": "1.1.0"
+  "version": "1.1.0",
+  "babel": {
+    "plugins": [
+      "transform-es2015-modules-commonjs",
+      "transform-export-extensions",
+      "transform-es2015-destructuring",
+      "transform-es2015-parameters",
+      "transform-es2015-spread"
+    ]
+  }  
 }
