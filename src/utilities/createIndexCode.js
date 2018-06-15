@@ -10,11 +10,17 @@ const safeVariableName = (fileName) => {
   }
 };
 
-const buildExportBlock = (files) => {
+const buildExportBlock = (files, defaultName) => {
   let importBlock;
 
   importBlock = _.map(files, (fileName) => {
-    return 'export { default as ' + safeVariableName(fileName) + ' } from \'./' + fileName + '\';';
+    const varName = safeVariableName(fileName);
+
+    if (varName === defaultName) {
+      return 'export { default } from \'./' + fileName + '\';';
+    }
+
+    return 'export { default as ' + varName + ' } from \'./' + fileName + '\';';
   });
 
   importBlock = importBlock.join('\n');
@@ -48,7 +54,7 @@ export default (filePaths, options = {}) => {
   if (filePaths.length) {
     const sortedFilePaths = filePaths.sort();
 
-    code += buildExportBlock(sortedFilePaths) + '\n\n';
+    code += buildExportBlock(sortedFilePaths, options.defaultName) + '\n\n';
   }
 
   return code;

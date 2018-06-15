@@ -72,4 +72,17 @@ export { default as foo } from './foo';
       `));
     });
   });
+
+  context('with default export name', () => {
+    it('should create default export', () => {
+      const indexCode = createIndexCode(['foo', 'bar'], {defaultName: 'foo'});
+
+      expect(indexCode).to.equal(codeExample(`
+// @create-index
+
+export { default as bar } from './bar';
+export { default } from './foo';
+      `));
+    });
+  });
 });

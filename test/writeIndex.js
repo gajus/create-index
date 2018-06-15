@@ -55,4 +55,20 @@ export { default as foo } from './foo.js';
 export { default as foo } from './foo.js';
     `));
   });
+
+  it('creates index with default export', () => {
+    const indexFilePath = path.resolve(fixturesPath, 'defaultName/index.js');
+
+    removeFile(indexFilePath);
+
+    writeIndex([path.resolve(fixturesPath, 'defaultName')], {default: 'match'});
+    const indexCode = readFile(indexFilePath);
+
+    expect(indexCode).to.equal(codeExample(`
+// @create-index
+
+export { default } from './defaultName.js';
+export { default as foo } from './foo.js';
+    `));
+  });
 });

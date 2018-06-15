@@ -15,10 +15,23 @@ export default (directoryPaths, options = {}) => {
 
   _.forEach(sortedDirectoryPaths, (directoryPath) => {
     const config = readIndexConfig(directoryPath);
-    const optionsWithConfig = Object.assign({}, options, {config});
+
+    let defaultName;
+
+    if (options.default === 'match') {
+      defaultName = path.basename(directoryPath);
+    }
+
+    const optionsWithConfig = Object.assign({}, options, {
+      config,
+      defaultName
+    });
     const siblings = readDirectory(directoryPath, optionsWithConfig);
     const indexCode = createIndexCode(siblings, optionsWithConfig);
     const indexFilePath = path.resolve(directoryPath, 'index.js');
+
+    // eslint-disable-next-line
+    console.log(options, defaultName, optionsWithConfig, indexCode);
 
     fs.writeFileSync(indexFilePath, indexCode);
   });

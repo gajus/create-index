@@ -38,6 +38,14 @@ const argv = yargs
     }
   })
   .options({
+    default: {
+      alias: 'd',
+      default: 'default',
+      description: 'Determines which file will be used as the default export. Either "default" or "match".',
+      type: 'string'
+    }
+  })
+  .options({
     extensions: {
       alias: 'x',
       default: ['js'],

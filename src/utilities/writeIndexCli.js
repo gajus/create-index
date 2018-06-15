@@ -23,6 +23,7 @@ export default (directoryPaths, options = {}) => {
     log('Ignore unsafe:', options.ignoreUnsafe ? chalk.green('true') : chalk.red('false'));
     log('Extensions:', chalk.green(options.extensions));
   }
+  log('Default export:', chalk.green(options.default));
 
   if (options.updateIndex || options.recursive) {
     sortedDirectoryPaths = _.map(sortedDirectoryPaths, (dir) => {
@@ -53,9 +54,16 @@ export default (directoryPaths, options = {}) => {
       silent: options.ignoreUnsafe
     });
 
+    let defaultName;
+
+    if (options.default === 'match') {
+      defaultName = path.basename(options.default);
+    }
+
     const indexCode = createIndexCode(siblings, {
       banner: options.banner,
-      config
+      config,
+      defaultName
     });
 
     const indexFilePath = path.resolve(directoryPath, 'index.js');
