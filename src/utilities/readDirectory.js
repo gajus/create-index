@@ -78,7 +78,8 @@ export default (directoryPath, options = {}) => {
 
   const {
     extensions = ['js'],
-    config = {}
+    config = {},
+    ignoreDirs = false
   } = options;
 
   let children;
@@ -111,7 +112,7 @@ export default (directoryPath, options = {}) => {
       return false;
     }
 
-    if (isDirectory && !hasIndex(absolutePath)) {
+    if (isDirectory && (!hasIndex(absolutePath) || ignoreDirs)) {
       return false;
     }
 

@@ -24,6 +24,14 @@ const argv = yargs
     }
   })
   .options({
+    ignoreDirectories: {
+      alias: 'd',
+      default: false,
+      description: 'Ignores importing directories into the index file, even if they have a safe "index.js".',
+      type: 'boolean'
+    }
+  })
+  .options({
     update: {
       alias: 'u',
       default: false,
@@ -45,14 +53,24 @@ const argv = yargs
       type: 'array'
     }
   })
-  .example('create-index ./src ./src/utilities', 'Creates or updates an existing create-index index file in the target (./src, ./src/utilities) directories.')
-  .example('create-index --update ./src ./tests', 'Finds all create-index index files in the target directories and descending directories. Updates found index files.')
-  .example('create-index ./src --extensions js jsx', 'Creates or updates an existing create-index index file in the target (./src) directory for both .js and .jsx extensions.')
+  .example(
+    'create-index ./src ./src/utilities',
+    'Creates or updates an existing create-index index file in the target (./src, ./src/utilities) directories.'
+  )
+  .example(
+    'create-index --update ./src ./tests',
+    'Finds all create-index index files in the target directories and descending directories. Updates found index files.'
+  )
+  .example(
+    'create-index ./src --extensions js jsx',
+    'Creates or updates an existing create-index index file in the target (./src) directory for both .js and .jsx extensions.'
+  )
   .argv;
 
 writeIndexCli(argv._, {
   banner: argv.banner,
   extensions: argv.extensions,
+  ignoreDirectories: argv.ignoreDirectories,
   ignoreUnsafe: argv.ignoreUnsafe,
   recursive: argv.recursive,
   updateIndex: argv.update
