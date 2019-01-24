@@ -35,8 +35,8 @@ describe('readDirectory()', () => {
       expect(names).to.deep.equal(['bar', 'foo']);
     });
 
-    it('excludes directories if ignoreDirs = true', () => {
-      const names = readDirectory(path.resolve(fixturesPath, 'children-index'), {ignoreDirs: true});
+    it('excludes directories if ignoreDirectories = true', () => {
+      const names = readDirectory(path.resolve(fixturesPath, 'children-index'), {ignoreDirectories: true});
 
       expect(names).to.deep.equal([]);
     });
