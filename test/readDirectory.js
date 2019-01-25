@@ -34,6 +34,12 @@ describe('readDirectory()', () => {
 
       expect(names).to.deep.equal(['bar', 'foo']);
     });
+
+    it('excludes directories if ignoreDirectories = true', () => {
+      const names = readDirectory(path.resolve(fixturesPath, 'children-index'), {ignoreDirectories: true});
+
+      expect(names).to.deep.equal([]);
+    });
   });
   context('target directory contains files', () => {
     it('refers to the files (with extension)', () => {

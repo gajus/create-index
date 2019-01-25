@@ -50,6 +50,7 @@ export default (directoryPaths, options = {}) => {
     const siblings = readDirectory(directoryPath, {
       config,
       extensions: options.extensions,
+      ignoreDirectories: options.ignoreDirectories,
       silent: options.ignoreUnsafe
     });
 

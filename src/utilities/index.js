@@ -1,10 +1,10 @@
 // @create-index
 
-export createIndexCode from './createIndexCode.js';
-export findIndexFiles from './findIndexFiles.js';
-export log from './log.js';
-export readDirectory from './readDirectory.js';
-export sortByDepth from './sortByDepth.js';
-export validateTargetDirectory from './validateTargetDirectory.js';
-export writeIndex from './writeIndex.js';
-export writeIndexCli from './writeIndexCli.js';
+export createIndexCode from './createIndexCode';
+export findIndexFiles from './findIndexFiles';
+export log from './log';
+export readDirectory from './readDirectory';
+export sortByDepth from './sortByDepth';
+export validateTargetDirectory from './validateTargetDirectory';
+export writeIndex from './writeIndex';
+export writeIndexCli from './writeIndexCli';
