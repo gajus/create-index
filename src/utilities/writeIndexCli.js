@@ -27,7 +27,7 @@ export default (directoryPaths, options = {}) => {
   if (options.updateIndex || options.recursive) {
     sortedDirectoryPaths = _.map(sortedDirectoryPaths, (dir) => {
       return findIndexFiles(dir, {
-        fileName: options.updateIndex ? 'index.js' : '*',
+        fileName: options.updateIndex ? options.outputFile || 'index.js' : '*',
         silent: options.updateIndex || options.ignoreUnsafe
       });
     });
