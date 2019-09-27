@@ -40,13 +40,13 @@ export default (directoryPaths, options = {}) => {
   }
 
   sortedDirectoryPaths = sortedDirectoryPaths.filter((directoryPath) => {
-    return validateTargetDirectory(directoryPath, {silent: options.ignoreUnsafe});
+    return validateTargetDirectory(directoryPath, {silent: options.ignoreUnsafe, outputFile: options.outputFile});
   });
 
   _.forEach(sortedDirectoryPaths, (directoryPath) => {
     let existingIndexCode;
 
-    const config = readIndexConfig(directoryPath);
+    const config = readIndexConfig(directoryPath, options);
 
     const siblings = readDirectory(directoryPath, {
       config,
@@ -60,7 +60,7 @@ export default (directoryPaths, options = {}) => {
       config
     });
 
-    const indexFilePath = path.resolve(directoryPath, 'index.js');
+    const indexFilePath = path.resolve(directoryPath, options.outputFile || 'index.js');
 
     try {
       existingIndexCode = fs.readFileSync(indexFilePath, 'utf8');
