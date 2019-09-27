@@ -81,5 +81,6 @@ writeIndexCli(argv._, {
   ignoreDirectories: argv.ignoreDirectories,
   ignoreUnsafe: argv.ignoreUnsafe,
   recursive: argv.recursive,
+  outputFile: argv.outputFile,
   updateIndex: argv.update
 });

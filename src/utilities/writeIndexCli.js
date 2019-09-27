@@ -16,6 +16,7 @@ export default (directoryPaths, options = {}) => {
   sortedDirectoryPaths = sortByDepth(directoryPaths);
 
   log('Target directories', sortedDirectoryPaths);
+  log('Output file', options.outputFile);
   if (options.updateIndex) {
     log('Update index:', options.updateIndex ? chalk.green('true') : chalk.red('false'));
   } else {
