@@ -53,6 +53,14 @@ const argv = yargs
       type: 'array'
     }
   })
+  .options({
+    outputFile: {
+      alias: 'o',
+      default: 'index.js',
+      description: 'Output file',
+      type: 'string',
+    }
+  })
   .example(
     'create-index ./src ./src/utilities',
     'Creates or updates an existing create-index index file in the target (./src, ./src/utilities) directories.'
