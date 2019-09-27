@@ -58,7 +58,7 @@ const argv = yargs
       alias: 'o',
       default: 'index.js',
       description: 'Output file',
-      type: 'string',
+      type: 'string'
     }
   })
   .example(
