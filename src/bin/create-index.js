@@ -90,5 +90,6 @@ writeIndexCli(argv._, {
   ignoreUnsafe: argv.ignoreUnsafe,
   implicitDefault: argv.implicitDefault,
   recursive: argv.recursive,
-  updateIndex: argv.update
+  updateIndex: argv.update,
+  wildcardFolders: argv.wildcardFolders
 });
