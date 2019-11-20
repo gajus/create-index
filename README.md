@@ -97,6 +97,10 @@ Options:
                            First extension will always be preferred to homonyms
                            with another allowed extension.
                                                        [array] [default: ["js"]]
+  --implicitDefault, -c    Uses defaults as implicit instead of named.
+                           export { default as thing } from './thing.js'
+                           becomes export thing from './thing.js'
+                                                       [boolean] [default: false]
 
 Examples:
   create-index ./src ./src/utilities      Creates or updates an existing

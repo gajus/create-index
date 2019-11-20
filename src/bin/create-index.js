@@ -53,6 +53,14 @@ const argv = yargs
       type: 'array'
     }
   })
+  .options({
+    implicitDefault: {
+      alias: 'c',
+      default: false,
+      description: 'Uses defaults as implicit instead of named. export { default as thing } from \'./thing.js\' becomes export thing from \'./thing.js\'',
+      type: 'boolean'
+    }
+  })
   .example(
     'create-index ./src ./src/utilities',
     'Creates or updates an existing create-index index file in the target (./src, ./src/utilities) directories.'
@@ -71,6 +79,7 @@ writeIndexCli(argv._, {
   banner: argv.banner,
   extensions: argv.extensions,
   ignoreDirectories: argv.ignoreDirectories,
+  implicitDefault: argv.implicitDefault,
   ignoreUnsafe: argv.ignoreUnsafe,
   recursive: argv.recursive,
   updateIndex: argv.update

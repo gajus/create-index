@@ -9,17 +9,17 @@ const safeVariableName = (fileName) => {
     return fileName.slice(0, indexOfDot);
   }
 };
-
-const buildExportBlock = (files) => {
-  let importBlock;
-
-  importBlock = _.map(files, (fileName) => {
-    return 'export { default as ' + safeVariableName(fileName) + ' } from \'./' + fileName + '\';';
-  });
-
-  importBlock = importBlock.join('\n');
-
-  return importBlock;
+// export (tough bit) from './file
+const defaultFactory = (filename, block) => 'export ' + block + ' from \'./' + filename + '\';'; 
+// tough bit = file
+const implicitDefault = fileName => defaultFactory(filename, safeVariableName(fileName));
+// tough bit = { default as file }
+const explicitDefault = fileName => defaultFactory(filename, '{ default as ' + safeVariableName(fileName) + ' }');
+const buildExportBlock = (files, options) => {
+  const transform = options.implicitDefault
+    ? implicitDefault
+    : explicitDefault;
+  return files.map(transform).join('\n');
 };
 
 export default (filePaths, options = {}) => {
@@ -48,7 +48,7 @@ export default (filePaths, options = {}) => {
   if (filePaths.length) {
     const sortedFilePaths = filePaths.sort();
 
-    code += buildExportBlock(sortedFilePaths) + '\n\n';
+    code += buildExportBlock(sortedFilePath, options) + '\n\n';
   }
 
   return code;
