@@ -51,7 +51,7 @@ const argv = _yargs2.default.demand(1).options({
   }
 }).options({
   implicitDefault: {
-    alias: 'c',
+    alias: 'm',
     default: false,
     description: 'Uses defaults as implicit instead of named. export { default as thing } from \'./thing.js\' becomes export thing from \'./thing.js\'',
     type: 'boolean'
