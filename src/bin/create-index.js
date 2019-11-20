@@ -61,6 +61,14 @@ const argv = yargs
       type: 'boolean'
     }
   })
+  .options({
+    wildcardFolders: {
+      alias: 'w',
+      default: false,
+      description: 'Export folders as wildcards instead of defaults. Works well with recursion.',
+      type: 'boolean'
+    }
+  })
   .example(
     'create-index ./src ./src/utilities',
     'Creates or updates an existing create-index index file in the target (./src, ./src/utilities) directories.'

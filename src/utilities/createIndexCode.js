@@ -16,18 +16,33 @@ const defaultFactory = (filename, block) => {
 };
 
 // tough bit = file
-const implicitDefault = (fileName) => {
+const implicitDefaultExport = (fileName) => {
   return defaultFactory(fileName, safeVariableName(fileName));
 };
 
 // tough bit = { default as file }
-const explicitDefault = (fileName) => {
+const explicitDefaultExport = (fileName) => {
   return defaultFactory(fileName, '{ default as ' + safeVariableName(fileName) + ' }');
 };
+
+// tough bit = * as file
+const wildcardExport = (folderName) => {
+  return defaultFactory(folderName, '* as ' + folderName);
+};
+
 const buildExportBlock = (files, options) => {
-  const transform = options.implicitDefault ?
-    implicitDefault :
-    explicitDefault;
+  const transform = (file) => {
+    const isFolder = file.split('.').length === 1;
+    const defaultExport = options.implicitDefault ?
+      implicitDefaultExport :
+      explicitDefaultExport;
+
+    if (isFolder && options.wildcardFolders) {
+      return wildcardExport(file);
+    }
+
+    return defaultExport(file);
+  };
 
   return files.map(transform).join('\n');
 };
