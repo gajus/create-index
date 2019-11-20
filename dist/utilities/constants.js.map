@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../src/utilities/constants.js"],"names":["CREATE_INDEX_PATTERN"],"mappings":";;;;;AAAA;AACO,MAAMA,sDAAuB,kDAA7B","file":"constants.js","sourcesContent":["// eslint-disable-next-line\nexport const CREATE_INDEX_PATTERN = /(?:^|[\\n\\r]+)\\/\\/ @create-index\\s?({.*})?[\\n\\r]+/;\n"]}
