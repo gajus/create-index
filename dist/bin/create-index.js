@@ -62,8 +62,8 @@ const argv = _yargs2.default.demand(1).options({
   banner: argv.banner,
   extensions: argv.extensions,
   ignoreDirectories: argv.ignoreDirectories,
-  implicitDefault: argv.implicitDefault,
   ignoreUnsafe: argv.ignoreUnsafe,
+  implicitDefault: argv.implicitDefault,
   recursive: argv.recursive,
   updateIndex: argv.update
 });
