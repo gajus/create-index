@@ -38,7 +38,6 @@ export default (filePaths, options = {}) => {
 
   code = '';
   configCode = '';
-
   if (options.banner) {
     const banners = _.isArray(options.banner) ? options.banner : [options.banner];
 

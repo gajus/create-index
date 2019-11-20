@@ -57,7 +57,7 @@ const argv = yargs
     implicitDefault: {
       alias: 'm',
       default: false,
-      description: 'Uses defaults as implicit instead of named. export { default as thing } from \'./thing.js\' becomes export thing from \'./thing.js\'',
+      description: 'Uses implicit defaults as implicit instead of explicit. export { default as thing } from \'./thing.js\' becomes export thing from \'./thing.js\'',
       type: 'boolean'
     }
   })

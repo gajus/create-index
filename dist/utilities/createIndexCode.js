@@ -48,7 +48,6 @@ exports.default = function (filePaths) {
 
   code = '';
   configCode = '';
-
   if (options.banner) {
     const banners = _lodash2.default.isArray(options.banner) ? options.banner : [options.banner];
 

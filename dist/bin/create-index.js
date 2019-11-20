@@ -53,7 +53,7 @@ const argv = _yargs2.default.demand(1).options({
   implicitDefault: {
     alias: 'm',
     default: false,
-    description: 'Uses defaults as implicit instead of named. export { default as thing } from \'./thing.js\' becomes export thing from \'./thing.js\'',
+    description: 'Uses implicit defaults as implicit instead of explicit. export { default as thing } from \'./thing.js\' becomes export thing from \'./thing.js\'',
     type: 'boolean'
   }
 }).example('create-index ./src ./src/utilities', 'Creates or updates an existing create-index index file in the target (./src, ./src/utilities) directories.').example('create-index --update ./src ./tests', 'Finds all create-index index files in the target directories and descending directories. Updates found index files.').example('create-index ./src --extensions js jsx', 'Creates or updates an existing create-index index file in the target (./src) directory for both .js and .jsx extensions.').argv;

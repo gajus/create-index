@@ -96,10 +96,7 @@ exports.default = function (directoryPaths) {
       silent: options.ignoreUnsafe
     });
 
-    const indexCode = (0, _createIndexCode2.default)(siblings, {
-      banner: options.banner,
-      config
-    });
+    const indexCode = (0, _createIndexCode2.default)(siblings, Object.assign({}, options, { config }));
 
     const indexFilePath = _path2.default.resolve(directoryPath, 'index.js');
 
