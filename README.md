@@ -98,12 +98,12 @@ Options:
                            with another allowed extension.
                                                        [array] [default: ["js"]]
   --implicitDefault, -m    Uses defaults as implicit instead of named.
-                           export { default as thing } from './thing.js'
-                           becomes export thing from './thing.js'
+                           export { default as foo } from './foo.js'
+                           becomes export foo from './foo.js'
                                                        [boolean] [default: false]
   --wildcardFolders, -w    Imports all children from directory as wildcard.
-                           export things from './things'
-                           becomes export * as things from './thing.js'
+                           export foo from './foo'
+                           becomes export * as foo from './foo'
                                                        [boolean] [default: false]
 
 Examples:
