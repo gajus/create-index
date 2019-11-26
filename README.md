@@ -97,6 +97,14 @@ Options:
                            First extension will always be preferred to homonyms
                            with another allowed extension.
                                                        [array] [default: ["js"]]
+  --implicitDefault, -m    Uses defaults as implicit instead of named.
+                           export { default as foo } from './foo.js'
+                           becomes export foo from './foo.js'
+                                                       [boolean] [default: false]
+  --wildcardFolders, -w    Imports all children from directory as wildcard.
+                           export foo from './foo'
+                           becomes export * as foo from './foo'
+                                                       [boolean] [default: false]
 
 Examples:
   create-index ./src ./src/utilities      Creates or updates an existing

@@ -10,16 +10,41 @@ const safeVariableName = (fileName) => {
   }
 };
 
-const buildExportBlock = (files) => {
-  let importBlock;
+// export (tough bit) from './file
+const defaultFactory = (filename, block) => {
+  return 'export ' + block + ' from \'./' + filename + '\';';
+};
 
-  importBlock = _.map(files, (fileName) => {
-    return 'export { default as ' + safeVariableName(fileName) + ' } from \'./' + fileName + '\';';
-  });
+// tough bit = file
+const implicitDefaultExport = (fileName) => {
+  return defaultFactory(fileName, safeVariableName(fileName));
+};
 
-  importBlock = importBlock.join('\n');
+// tough bit = { default as file }
+const explicitDefaultExport = (fileName) => {
+  return defaultFactory(fileName, '{ default as ' + safeVariableName(fileName) + ' }');
+};
 
-  return importBlock;
+// tough bit = * as file
+const wildcardExport = (folderName) => {
+  return defaultFactory(folderName, '* as ' + folderName);
+};
+
+const buildExportBlock = (files, options) => {
+  const transform = (file) => {
+    const isFolder = file.split('.').length === 1;
+    const defaultExport = options.implicitDefault ?
+      implicitDefaultExport :
+      explicitDefaultExport;
+
+    if (isFolder && options.wildcardFolders) {
+      return wildcardExport(file);
+    }
+
+    return defaultExport(file);
+  };
+
+  return files.map(transform).join('\n');
 };
 
 export default (filePaths, options = {}) => {
@@ -28,7 +53,6 @@ export default (filePaths, options = {}) => {
 
   code = '';
   configCode = '';
-
   if (options.banner) {
     const banners = _.isArray(options.banner) ? options.banner : [options.banner];
 
@@ -48,7 +72,7 @@ export default (filePaths, options = {}) => {
   if (filePaths.length) {
     const sortedFilePaths = filePaths.sort();
 
-    code += buildExportBlock(sortedFilePaths) + '\n\n';
+    code += buildExportBlock(sortedFilePaths, options) + '\n\n';
   }
 
   return code;

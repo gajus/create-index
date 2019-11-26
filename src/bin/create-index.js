@@ -53,6 +53,22 @@ const argv = yargs
       type: 'array'
     }
   })
+  .options({
+    implicitDefault: {
+      alias: 'm',
+      default: false,
+      description: 'Uses implicit defaults as implicit instead of explicit. export { default as thing } from \'./thing.js\' becomes export thing from \'./thing.js\'',
+      type: 'boolean'
+    }
+  })
+  .options({
+    wildcardFolders: {
+      alias: 'w',
+      default: false,
+      description: 'Export folders as wildcards instead of defaults. Works well with recursion.',
+      type: 'boolean'
+    }
+  })
   .example(
     'create-index ./src ./src/utilities',
     'Creates or updates an existing create-index index file in the target (./src, ./src/utilities) directories.'
@@ -72,6 +88,8 @@ writeIndexCli(argv._, {
   extensions: argv.extensions,
   ignoreDirectories: argv.ignoreDirectories,
   ignoreUnsafe: argv.ignoreUnsafe,
+  implicitDefault: argv.implicitDefault,
   recursive: argv.recursive,
-  updateIndex: argv.update
+  updateIndex: argv.update,
+  wildcardFolders: argv.wildcardFolders
 });

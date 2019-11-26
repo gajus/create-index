@@ -7,6 +7,8 @@ node_modules
 !.editorconfig
 !.eslintignore
 !.eslintrc
+!.gitattributes
 !.gitignore
 !.npmignore
 !.travis.yml
+package-lock.json

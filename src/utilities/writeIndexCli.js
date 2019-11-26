@@ -54,10 +54,7 @@ export default (directoryPaths, options = {}) => {
       silent: options.ignoreUnsafe
     });
 
-    const indexCode = createIndexCode(siblings, {
-      banner: options.banner,
-      config
-    });
+    const indexCode = createIndexCode(siblings, Object.assign({}, options, {config}));
 
     const indexFilePath = path.resolve(directoryPath, 'index.js');
 
