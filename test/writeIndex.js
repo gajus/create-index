@@ -3,7 +3,7 @@
 import fs from 'fs';
 import path from 'path';
 import {
-    expect
+  expect,
 } from 'chai';
 import writeIndex from '../src/utilities/writeIndex';
 import codeExample from './codeExample';
@@ -40,7 +40,7 @@ export { default as foo } from './foo.js';
 
   it('creates index with config in target directory', () => {
     const indexFilePath = path.resolve(fixturesPath, 'with-config/index.js');
-    // eslint-disable-next-line
+    // eslint-disable-next-line quotes
     const ignoredExportLine = `export { default as bar } from './bar.js';`;
 
     appendToFile(indexFilePath, ignoredExportLine);

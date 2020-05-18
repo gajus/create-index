@@ -1,6 +1,6 @@
 import path from 'path';
 import {
-    expect
+  expect,
 } from 'chai';
 import readIndexConfig from '../src/utilities/readIndexConfig';
 
@@ -8,15 +8,15 @@ const fixtures = {
   noIndex: path.resolve(__dirname, 'fixtures/read-index-config/no-index'),
   withConfig: path.resolve(__dirname, 'fixtures/read-index-config/with-config'),
   withInvalidConfig: path.resolve(__dirname, 'fixtures/read-index-config/with-invalid-config'),
-  withoutConfig: path.resolve(__dirname, 'fixtures/read-index-config/without-config')
+  withoutConfig: path.resolve(__dirname, 'fixtures/read-index-config/without-config'),
 };
 
 const expectedValues = {
   noIndex: {},
   withConfig: {
-    ignore: ['/foo.js$/']
+    ignore: ['/foo.js$/'],
   },
-  withoutConfig: {}
+  withoutConfig: {},
 };
 
 describe('readIndexConfig()', () => {

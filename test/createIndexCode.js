@@ -1,7 +1,7 @@
 /* eslint-disable no-restricted-syntax */
 
 import {
-    expect
+  expect,
 } from 'chai';
 import createIndexCode from '../src/utilities/createIndexCode';
 import codeExample from './codeExample';
@@ -60,7 +60,7 @@ export { default as foo } from './foo';
   context('with config', () => {
     it('should append config', () => {
       const config = {
-        ignore: ['/^zoo/']
+        ignore: ['/^zoo/'],
       };
       const indexCode = createIndexCode(['foo', 'bar'], {config});
 

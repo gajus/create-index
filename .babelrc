@@ -1,8 +1,9 @@
 {
   "plugins": [
-    "transform-es2015-modules-commonjs",
-    "transform-export-extensions",
-    "transform-es2015-destructuring",
-    "transform-es2015-parameters"
+    "@babel/plugin-transform-modules-commonjs",
+    "@babel/plugin-proposal-export-default-from",
+    "@babel/plugin-proposal-export-namespace-from",
+    "@babel/plugin-transform-destructuring",
+    "@babel/plugin-transform-parameters"
   ]
 }

@@ -1,6 +1,6 @@
 import path from 'path';
 import {
-    expect
+  expect,
 } from 'chai';
 import glob from 'glob';
 import findIndexFiles from '../src/utilities/findIndexFiles';

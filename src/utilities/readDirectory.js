@@ -17,7 +17,7 @@ const hasMultipleExtensions = (fileName) => {
 };
 
 const isSafeName = (fileName) => {
-  return /^[a-z_][a-z0-9._]*$/i.test(fileName);
+  return /^[_a-z][\w.]*$/i.test(fileName);
 };
 
 const stripExtension = (fileName) => {
@@ -27,7 +27,7 @@ const stripExtension = (fileName) => {
     return fileName;
   }
 
-  return fileName.substr(0, pos);
+  return fileName.slice(0, Math.max(0, pos));
 };
 
 const removeDuplicates = (files, preferredExtension) => {
@@ -79,7 +79,7 @@ export default (directoryPath, options = {}) => {
   const {
     extensions = ['js'],
     config = {},
-    ignoreDirectories = false
+    ignoreDirectories = false,
   } = options;
 
   let children;
@@ -106,8 +106,8 @@ export default (directoryPath, options = {}) => {
       return false;
     }
 
-    if (!isDirectory && !extensions.some((ext) => {
-      return _.endsWith(fileName, '.' + ext);
+    if (!isDirectory && !extensions.some((extension) => {
+      return _.endsWith(fileName, '.' + extension);
     })) {
       return false;
     }

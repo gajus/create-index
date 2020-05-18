@@ -8,7 +8,7 @@ export default (directoryPath, options = {}) => {
     fs.statSync(indexPath);
 
     return true;
-  } catch (error) {
+  } catch {
     return false;
   }
 };

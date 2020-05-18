@@ -10,7 +10,8 @@ import sortByDepth from './sortByDepth';
 export default (directoryPaths, options = {}) => {
   const sortedDirectoryPaths = sortByDepth(directoryPaths)
     .filter((directoryPath) => {
-      return validateTargetDirectory(directoryPath, {silent: options.ignoreUnsafe, outputFile: options.outputFile});
+      return validateTargetDirectory(directoryPath, {outputFile: options.outputFile,
+        silent: options.ignoreUnsafe});
     });
 
   _.forEach(sortedDirectoryPaths, (directoryPath) => {

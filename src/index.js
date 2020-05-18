@@ -1,4 +1,4 @@
 export {
   findIndexFiles,
-  writeIndex
+  writeIndex,
 } from './utilities';

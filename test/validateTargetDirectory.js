@@ -2,7 +2,7 @@
 
 import path from 'path';
 import {
-    expect
+  expect,
 } from 'chai';
 import validateTargetDirectory from '../src/utilities/validateTargetDirectory';
 

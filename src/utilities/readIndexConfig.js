@@ -21,10 +21,10 @@ export default (directoryPath, options = {}) => {
 
   try {
     config = JSON.parse(configLine);
-  } catch (error) {
+  } catch {
     throw new Error(
       '"' + indexPath + '" contains invalid configuration object.\n' +
-      'Configuration object must be a valid JSON.'
+      'Configuration object must be a valid JSON.',
     );
   }
 

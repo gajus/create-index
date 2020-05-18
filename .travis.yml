@@ -4,8 +4,12 @@ node_js:
   - 7
   - 6
   - 5
+script:
+  - npm run lint
+  - npm run test
+  - npm run build
 after_success:
-  - semantic-release pre && npm publish && semantic-release post
+  - semantic-release
 notifications:
   email: false
 sudo: false

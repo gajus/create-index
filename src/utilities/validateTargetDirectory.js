@@ -8,7 +8,7 @@ export default (targetDirectory, options = {}) => {
 
   try {
     stats = fs.statSync(targetDirectory);
-  } catch (error) {
+  } catch {
     if (silent) {
       return false;
     } else {
@@ -28,7 +28,7 @@ export default (targetDirectory, options = {}) => {
 
   try {
     fs.statSync(indexFilePath);
-  } catch (error) {
+  } catch {
     return true;
   }
 

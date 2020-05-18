@@ -1,7 +1,7 @@
 import {
-    expect
+  expect,
 } from 'chai';
-import sortByDepth from './../src/utilities/sortByDepth';
+import sortByDepth from '../src/utilities/sortByDepth';
 
 describe('sortByDepth()', () => {
   it('sorts from deepest to the most shallow', () => {
@@ -9,7 +9,7 @@ describe('sortByDepth()', () => {
       '/b',
       '/a',
       '/a/b/c',
-      '/a/b'
+      '/a/b',
     ];
 
     const sortedPaths = sortByDepth(paths);

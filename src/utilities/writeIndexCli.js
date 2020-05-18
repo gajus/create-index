@@ -26,10 +26,10 @@ export default (directoryPaths, options = {}) => {
   }
 
   if (options.updateIndex || options.recursive) {
-    sortedDirectoryPaths = _.map(sortedDirectoryPaths, (dir) => {
-      return findIndexFiles(dir, {
+    sortedDirectoryPaths = _.map(sortedDirectoryPaths, (directory) => {
+      return findIndexFiles(directory, {
         fileName: options.updateIndex ? options.outputFile || 'index.js' : '*',
-        silent: options.updateIndex || options.ignoreUnsafe
+        silent: options.updateIndex || options.ignoreUnsafe,
       });
     });
     sortedDirectoryPaths = _.flatten(sortedDirectoryPaths);
@@ -40,7 +40,8 @@ export default (directoryPaths, options = {}) => {
   }
 
   sortedDirectoryPaths = sortedDirectoryPaths.filter((directoryPath) => {
-    return validateTargetDirectory(directoryPath, {silent: options.ignoreUnsafe, outputFile: options.outputFile});
+    return validateTargetDirectory(directoryPath, {outputFile: options.outputFile,
+      silent: options.ignoreUnsafe});
   });
 
   _.forEach(sortedDirectoryPaths, (directoryPath) => {
@@ -52,12 +53,12 @@ export default (directoryPaths, options = {}) => {
       config,
       extensions: options.extensions,
       ignoreDirectories: options.ignoreDirectories,
-      silent: options.ignoreUnsafe
+      silent: options.ignoreUnsafe,
     });
 
     const indexCode = createIndexCode(siblings, {
       banner: options.banner,
-      config
+      config,
     });
 
     const indexFilePath = path.resolve(directoryPath, options.outputFile || 'index.js');
@@ -65,12 +66,12 @@ export default (directoryPaths, options = {}) => {
     try {
       existingIndexCode = fs.readFileSync(indexFilePath, 'utf8');
 
-        /* eslint-disable no-empty */
-    } catch (error) {
+      /* eslint-disable no-empty */
+    } catch {
 
     }
 
-        /* eslint-enable no-empty */
+    /* eslint-enable no-empty */
 
     fs.writeFileSync(indexFilePath, indexCode);
 
