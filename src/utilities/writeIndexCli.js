@@ -16,6 +16,7 @@ export default (directoryPaths, options = {}) => {
   sortedDirectoryPaths = sortByDepth(directoryPaths);
 
   log('Target directories', sortedDirectoryPaths);
+  log('Output file', options.outputFile);
   if (options.updateIndex) {
     log('Update index:', options.updateIndex ? chalk.green('true') : chalk.red('false'));
   } else {
@@ -27,7 +28,7 @@ export default (directoryPaths, options = {}) => {
   if (options.updateIndex || options.recursive) {
     sortedDirectoryPaths = _.map(sortedDirectoryPaths, (dir) => {
       return findIndexFiles(dir, {
-        fileName: options.updateIndex ? 'index.js' : '*',
+        fileName: options.updateIndex ? options.outputFile || 'index.js' : '*',
         silent: options.updateIndex || options.ignoreUnsafe
       });
     });
@@ -39,13 +40,13 @@ export default (directoryPaths, options = {}) => {
   }
 
   sortedDirectoryPaths = sortedDirectoryPaths.filter((directoryPath) => {
-    return validateTargetDirectory(directoryPath, {silent: options.ignoreUnsafe});
+    return validateTargetDirectory(directoryPath, {silent: options.ignoreUnsafe, outputFile: options.outputFile});
   });
 
   _.forEach(sortedDirectoryPaths, (directoryPath) => {
     let existingIndexCode;
 
-    const config = readIndexConfig(directoryPath);
+    const config = readIndexConfig(directoryPath, options);
 
     const siblings = readDirectory(directoryPath, {
       config,
@@ -59,7 +60,7 @@ export default (directoryPaths, options = {}) => {
       config
     });
 
-    const indexFilePath = path.resolve(directoryPath, 'index.js');
+    const indexFilePath = path.resolve(directoryPath, options.outputFile || 'index.js');
 
     try {
       existingIndexCode = fs.readFileSync(indexFilePath, 'utf8');

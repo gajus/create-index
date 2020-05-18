@@ -53,6 +53,14 @@ const argv = yargs
       type: 'array'
     }
   })
+  .options({
+    outputFile: {
+      alias: 'o',
+      default: 'index.js',
+      description: 'Output file',
+      type: 'string'
+    }
+  })
   .example(
     'create-index ./src ./src/utilities',
     'Creates or updates an existing create-index index file in the target (./src, ./src/utilities) directories.'
@@ -73,5 +81,6 @@ writeIndexCli(argv._, {
   ignoreDirectories: argv.ignoreDirectories,
   ignoreUnsafe: argv.ignoreUnsafe,
   recursive: argv.recursive,
+  outputFile: argv.outputFile,
   updateIndex: argv.update
 });

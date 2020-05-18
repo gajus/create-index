@@ -72,7 +72,7 @@ const removeIgnoredFiles = (files, ignorePatterns = []) => {
 };
 
 export default (directoryPath, options = {}) => {
-  if (!validateTargetDirectory(directoryPath, {silent: options.silent})) {
+  if (!validateTargetDirectory(directoryPath, options)) {
     return false;
   }
 
@@ -102,7 +102,7 @@ export default (directoryPath, options = {}) => {
       return false;
     }
 
-    if (_.startsWith(fileName, 'index.js')) {
+    if (_.startsWith(fileName, options.outputFile || 'index.js')) {
       return false;
     }
 
@@ -112,7 +112,7 @@ export default (directoryPath, options = {}) => {
       return false;
     }
 
-    if (isDirectory && (!hasIndex(absolutePath) || ignoreDirectories)) {
+    if (isDirectory && (!hasIndex(absolutePath, options) || ignoreDirectories)) {
       return false;
     }
 

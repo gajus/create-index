@@ -13,7 +13,8 @@ export default (directoryPath, options = {}) => {
 
   targetDirectories = _.filter(targetDirectories, (targetDirectoryPath) => {
     return validateTargetDirectory(path.dirname(targetDirectoryPath), {
-      silent: options.silent
+      silent: options.silent,
+      outputFile: options.fileName
     });
   });
 

@@ -97,6 +97,7 @@ Options:
                            First extension will always be preferred to homonyms
                            with another allowed extension.
                                                        [array] [default: ["js"]]
+  --outputFile, -o         Output file            [string] [default: "index.js"]                                                      [array] [default: ["js"]]
 
 Examples:
   create-index ./src ./src/utilities      Creates or updates an existing
