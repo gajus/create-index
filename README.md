@@ -98,6 +98,7 @@ Options:
                            with another allowed extension.
                                                        [array] [default: ["js"]]
   --outputFile, -o         Output file            [string] [default: "index.js"]                                                      [array] [default: ["js"]]
+  --moduleType, -o         Module type, "ES6" or "CJS"      [string] [default: "ES6"]
 
 Examples:
   create-index ./src ./src/utilities      Creates or updates an existing

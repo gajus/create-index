@@ -63,6 +63,13 @@ const argv = yargs
       type: 'string',
     },
   })
+  .options({
+    moduleType: {
+      default: 'ES6',
+      description: 'Module Type ["ES6", "CJS"]',
+      type: 'string',
+    },
+  })
   .example(
     'create-index ./src ./src/utilities',
     'Creates or updates an existing create-index index file in the target (./src, ./src/utilities) directories.',
@@ -83,6 +90,7 @@ writeIndexCli(argv._, {
   ignoreDirectories: argv.ignoreDirectories,
   ignoreUnsafe: argv.ignoreUnsafe,
   outputFile: argv.outputFile,
+  moduleType: argv.moduleType,
   recursive: argv.recursive,
   updateIndex: argv.update,
 });

@@ -72,4 +72,22 @@ export { default as foo } from './foo';
       `));
     });
   });
+
+  context('with config (moduleType=CJS)', () => {
+    it('handle moduleType=CJS', () => {
+      const indexCode = createIndexCode(['foo', 'bar'], {moduleType: 'CJS'});
+
+      expect(indexCode).to.equal(codeExample(`
+// @create-index
+
+const bar = require('./bar');
+const foo = require('./foo');
+
+module.exports = {
+  bar,
+  foo,
+}
+      `));
+    });
+  });
 });

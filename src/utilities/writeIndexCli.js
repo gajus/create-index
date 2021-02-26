@@ -17,6 +17,7 @@ export default (directoryPaths, options = {}) => {
 
   log('Target directories', sortedDirectoryPaths);
   log('Output file', options.outputFile);
+  log('Module type', options.moduleType);
   if (options.updateIndex) {
     log('Update index:', options.updateIndex ? chalk.green('true') : chalk.red('false'));
   } else {
@@ -58,6 +59,7 @@ export default (directoryPaths, options = {}) => {
 
     const indexCode = createIndexCode(siblings, {
       banner: options.banner,
+      moduleType: options.moduleType,
       config,
     });
 
