@@ -89,8 +89,8 @@ writeIndexCli(argv._, {
   extensions: argv.extensions,
   ignoreDirectories: argv.ignoreDirectories,
   ignoreUnsafe: argv.ignoreUnsafe,
-  outputFile: argv.outputFile,
   moduleType: argv.moduleType,
+  outputFile: argv.outputFile,
   recursive: argv.recursive,
   updateIndex: argv.update,
 });

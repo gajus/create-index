@@ -12,8 +12,8 @@ const safeVariableName = (fileName) => {
 
 const buildExportBlock = (files, moduleType) => {
   let importBlock;
-  
-  if(moduleType === 'CJS'){
+
+  if (moduleType === 'CJS') {
     importBlock = _.map(files, (fileName) => {
       return 'const ' + safeVariableName(fileName) + ' = require(\'./' + fileName + '\');';
     });
@@ -24,7 +24,7 @@ const buildExportBlock = (files, moduleType) => {
       return '  ' + safeVariableName(fileName) + ',';
     }));
     importBlock.push('}');
-  }else{
+  } else {
     importBlock = _.map(files, (fileName) => {
       return 'export { default as ' + safeVariableName(fileName) + ' } from \'./' + fileName + '\';';
     });
@@ -38,11 +38,10 @@ const buildExportBlock = (files, moduleType) => {
 export default (filePaths, options = {}) => {
   let code;
   let configCode;
-  let moduleType;
+  const moduleType = options.moduleType;
 
   code = '';
   configCode = '';
-  moduleType = options.moduleType;
 
   if (options.banner) {
     const banners = _.isArray(options.banner) ? options.banner : [options.banner];
@@ -59,7 +58,6 @@ export default (filePaths, options = {}) => {
   }
 
   code += '// @create-index' + configCode + '\n\n';
-
 
   if (filePaths.length) {
     const sortedFilePaths = filePaths.sort();

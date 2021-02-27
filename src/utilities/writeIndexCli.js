@@ -59,8 +59,8 @@ export default (directoryPaths, options = {}) => {
 
     const indexCode = createIndexCode(siblings, {
       banner: options.banner,
-      moduleType: options.moduleType,
       config,
+      moduleType: options.moduleType,
     });
 
     const indexFilePath = path.resolve(directoryPath, options.outputFile || 'index.js');
