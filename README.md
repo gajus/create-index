@@ -241,3 +241,9 @@ export {
     foo
 };
 ```
+
+## Generate `index.tsx` for TypeScript
+
+```bash
+create-index src/components/Icons --extensions tsx --outputFile index.tsx
+```
