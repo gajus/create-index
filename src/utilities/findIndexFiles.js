@@ -7,7 +7,7 @@ export default (directoryPath, options = {}) => {
   let fileName;
   let targetDirectories;
 
-  fileName = options.fileName || 'index.js';
+  fileName = options.outputFile || 'index.js';
   fileName = './**/' + fileName;
 
   targetDirectories = glob.sync(path.join(directoryPath, fileName));
